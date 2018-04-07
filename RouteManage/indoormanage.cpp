@@ -105,7 +105,7 @@ IndoorManage::IndoorManage(QWidget *parent) : QWidget(parent)
     h2->addLayout(v2,1);
     ver1->addLayout(hor1,1);
     ver1->addLayout(h2,10);
-
+    qDebug() << "hehe";
 }
 
 void IndoorManage::loadIndoorMap(){
