@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<layout>
+		<Node label="打卡签到" collapse="0">
+			<Node label="签到信息"></Node>
+		</Node>
+		<Node label="个人日报" collapse="0">
+			<Node label="日报详情"></Node>
+		</Node>
+		<Node label="个人周报" collapse="0">
+			<Node label="周报详情"></Node>
+		</Node>
+                <Node label="考勤记录"></Node>
+		<Node label="统计"></Node>
+	</layout>
+</root>

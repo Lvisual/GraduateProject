@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<first>
+		 <Node>
+			<x>-619</x>
+		        <y>-262</y>
+		 </Node>
+		
+		 <Node>
+			<x>-560</x>
+		        <y>-260</y>
+		 </Node>
+           
+		 <Node>
+			<x>-560</x>
+		        <y>-210</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-521</x>
+		        <y>-152</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-545</x>
+		        <y>-100</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-520</x>
+		        <y>-100</y>
+		 </Node>
+	
+	</first>
+  
+	<second>
+	
+	     <Node>
+			<x>-546</x>
+		        <y>45</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-540</x>
+		        <y>140</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-490</x>
+		        <y>115</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-490</x>
+		        <y>50</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-490</x>
+		        <y>160</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-390</x>
+		        <y>160</y>
+		 </Node>
+	
+       </second>
+
+    <third>	
+	
+	     <Node>
+			<x>-295</x>
+		        <y>160</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-215</x>
+		        <y>115</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-160</x>
+		        <y>115</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-160</x>
+		        <y>40</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-160</x>
+		        <y>150</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-60</x>
+		        <y>116</y>
+		 </Node>
+       </third>	
+
+    <fourth>
+        
+		<Node>
+			<x>-60</x>
+		        <y>150</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-88</x>
+		        <y>168</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-190</x>
+		        <y>168</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-154</x>
+		        <y>150</y>
+		 </Node>
+		 
+		 <Node>
+			<x>-35</x>
+		        <y>150</y>
+		 </Node>
+		 
+		 <Node>
+			<x>15</x>
+		        <y>115</y>
+		 </Node>
+		 
+       </fourth>	
+	   
+	<fifth>
+	
+	     <Node>
+			<x>15</x>
+		        <y>155</y>
+		 </Node>
+		 
+		 <Node>
+			<x>80</x>
+		        <y>115</y>
+		 </Node>
+		 
+		 <Node>
+			<x>80</x>
+		        <y>155</y>
+		 </Node>
+		 
+		 <Node>
+			<x>145</x>
+		        <y>115</y>
+		 </Node>
+		 
+		 <Node>
+			<x>220</x>
+		        <y>140</y>
+		 </Node>
+		 
+		 <Node>
+			<x>276</x>
+		        <y>167</y>
+		 </Node>
+	
+	    </fifth>
+		
+    <sixth>
+	
+	    <Node>
+			<x>345</x>
+		        <y>140</y>
+		 </Node>
+		 
+		 <Node>
+			<x>400</x>
+		        <y>115</y>
+		 </Node>
+		 
+		 <Node>
+			<x>450</x>
+		        <y>140</y>
+		 </Node>
+		 
+		 <Node>
+			<x>500</x>
+		        <y>140</y>
+		 </Node>
+		 
+		 <Node>
+			<x>500</x>
+		        <y>-135</y>
+		 </Node>
+		 
+		 <Node>
+			<x>500</x>
+		        <y>-260</y>
+		 </Node>
+		
+	    </sixth>
+		
+    <seventh>
+	
+	    <Node>
+			<x>620</x>
+		        <y>-260</y>
+		 </Node>
+		 
+		 <Node>
+			<x>620</x>
+		        <y>-190</y>
+		 </Node>
+		 
+		 <Node>
+			<x>515</x>
+		        <y>-190</y>
+		 </Node>
+		 
+		 <Node>
+			<x>515</x>
+		        <y>-90</y>
+		 </Node>
+		 
+		 <Node>
+			<x>535</x>
+		        <y>-90</y>
+		 </Node>
+		 
+		 <Node>
+			<x>535</x>
+		        <y>115</y>
+		 </Node>
+	
+	    </seventh>
+		
+    <eighth>
+	
+	    <Node>
+			<x>640</x>
+		        <y>115</y>
+		 </Node>
+		 
+		 <Node>
+			<x>640</x>
+		        <y>170</y>
+		 </Node>
+		 
+		 <Node>
+			<x>570</x>
+		        <y>170</y>
+		 </Node>
+		 
+		 <Node>
+			<x>535</x>
+		        <y>180</y>
+		 </Node>
+		 
+		 <Node>
+			<x>535</x>
+		        <y>300</y>
+		 </Node>
+		 
+		 <Node>
+			<x>635</x>
+		        <y>300</y>
+		 </Node>
+	
+	    </eighth>
+
+</root>

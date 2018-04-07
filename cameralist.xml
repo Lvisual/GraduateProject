@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<layout>
+		<Node label="摄像头1" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="摄像头2" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="摄像头3" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="摄像头4" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="摄像头5" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="摄像头6" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="摄像头7" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="摄像头8" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="摄像头9" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="摄像头10" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+	
+	</layout>
+</root>

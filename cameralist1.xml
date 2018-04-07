@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<layout>
+		<Node label="传感器1" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="传感器2" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="传感器3" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="传感器4" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+		<Node label="传感器5" collapse="0">
+			<Node label="开启"></Node>
+			<Node label="关闭" ></Node>
+		</Node>
+	
+	</layout>
+</root>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<layout>
+		<Node label="摄像头联动"></Node>
+		<Node label="摄像头管理"></Node> 	
+		<Node label="统计"></Node>	
+	</layout>
+</root>
