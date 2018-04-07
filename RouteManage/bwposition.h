@@ -7,6 +7,7 @@ using namespace std;
 #include "Triangle.h"
 class BwPosition
 {
+
 public:
     BwPosition();
     bool PtInPolygon(QPointF p);
