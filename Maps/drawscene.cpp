@@ -10,32 +10,6 @@ DrawScene::DrawScene(QWidget *parent)
     currentWidth = 1;
 }
 
-//void DrawScene::drawGridBackground(int width)
-//{
-
-
-//    QPolygonF myPolygon1;
-//    myPolygon1 << QPointF(0,width/2) << QPointF(width,width/2);
-//    QPolygonF myPolygon2;
-//    myPolygon2 << QPointF(width/2,0) << QPointF(width/2,width);
-//    QPixmap pixmap(width, width);
-//    pixmap.fill(Qt::transparent);
-//    QPainter painter(&pixmap);
-//    QPen pen(Qt::lightGray,1);
-///*
-//    QVector<qreal> dashes;//line style--虚线
-//    qreal space = 2;
-//    dashes << 2 << space << 2 <<space;
-//*/
-//  //  pen.setDashPattern(Qt::PenStyle(Qt::SolidLine));
-//    pen.setWidth(1);
-
-//    painter.setPen(pen);
-//    painter.translate(0, 0);
-//    painter.drawPolyline(myPolygon1);
-//    painter.drawPolyline(myPolygon2);
-//    this->setBackgroundBrush(pixmap);
-//}
 void DrawScene::mouseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     switch( mouseEvent->type() ){
@@ -67,7 +41,7 @@ void DrawScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     BrushAndColor *shape=new BrushAndColor();
     DrawTool * tool = DrawTool::findTool( DrawTool::c_drawShape );
-     // qDebug()<<"color:"<<currentColor<<endl<<"brush:"<<currentBrush<<endl;
+     qDebug()<<"color:"<<currentColor<<endl<<"brush:"<<currentBrush<<endl;
     shape->set(currentColor, currentBrush, currentWidth);
     this->bc = *shape;
     if ( tool )

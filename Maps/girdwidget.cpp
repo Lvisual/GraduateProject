@@ -48,7 +48,7 @@ void GirdWidget::paintOnWidget(QWidget *w) {
     //painter.translate(inset * 2, ui->yearWidget->size().height() - inset);
     painter.translate(leftWidth, 1.75 * textHeight + height);
 
-    int totalCount = 9000; // 默认每年收入9000件衣服
+    int totalCount = 9000;
     int count = 12 ;        // 分成10成
 //    float deltaX = width / 12.0f;         // x坐标上每分的宽度
 //    float deltaY = (float)height / count; // y坐标上每分的宽度
@@ -65,7 +65,6 @@ void GirdWidget::paintOnWidget(QWidget *w) {
         // 绘制坐标刻度
         painter.drawLine(deltaX * i, 0, deltaX * i, 4);
 
-        // 绘制坐标处的月
         int monthX = deltaX * (i - 1) + ((deltaX - stringWidth) / 2);
         painter.drawText(monthX, textHeight, month);
     }

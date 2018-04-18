@@ -9,6 +9,7 @@
 #include "ElecFencing/elecfencingview.h"
 #include "Maps/drawscene.h"
 #include <QToolButton>
+#include "indoorscene.h"
 class IndoorManage : public QWidget
 {
     Q_OBJECT
@@ -33,7 +34,7 @@ public slots:
 private:  
   Astar m_astar;   //A*
   ElecFencingView *m_view; // 地图场景
-  DrawScene *m_scene; //地图场景
+  IndoorScene *m_scene; //地图场景
   QLabel *scenelocate;
   QLabel *Maplocate;
   QLabel *bilichi1;

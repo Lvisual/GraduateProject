@@ -11,13 +11,8 @@ qreal jiange1=50;
 qreal penwidth1=1;
 ElecFencingView::ElecFencingView()
 {
-   // m_grid = new GridTool();
-   // painter=new QPainter();
-
     drawGridBackground(jiange1,penwidth1);
     connect(this,SIGNAL(newjiange(double,double)),this,SLOT(drawGridBackground(double,double)));
-   // connect(this,SIGNAL(newpenwidth(double)),this,SLOT(setnewpenwidth(double)));
-
 }
 
 void ElecFencingView::wheelEvent(QWheelEvent *event)
@@ -48,7 +43,6 @@ void ElecFencingView::wheelEvent(QWheelEvent *event)
         penwidth1*=sc1;
         emit bilichi(bili);
         emit newjiange(jiange1,penwidth1);
-      //  emit newpenwidth(penwidth);
     }
 }
 QPointF ElecFencingView ::mapToMap(QPointF p)
@@ -68,7 +62,6 @@ QPointF ElecFencingView ::mapToMap(QPointF p)
 
 void ElecFencingView :: mouseMoveEvent(QMouseEvent *event)
 {
-   // QGraphicsView::mouseMoveEvent(event);
     this->setMouseTracking(true);
     QPoint viewPoint = event->pos();
     QPointF scenePoint = this->mapToScene(viewPoint);
@@ -102,8 +95,6 @@ void ElecFencingView::drawGridBackground(double width,double penwidth1)
         QPainter painter(&pixmap);
         QPen pen(Qt::lightGray);
         pen.setWidth(penwidth1);
-
-        qDebug()<<"penwidth:"<<penwidth1;
         painter.setPen(pen);
         painter.translate(0, 0);
         painter.drawPolyline(myPolygon1);

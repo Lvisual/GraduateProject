@@ -77,41 +77,15 @@ GLWidget::GLWidget(QWidget *p_parent)
 {
 //////////////////////////// GLC specific///////////////////////////////////////
     connect(&m_GlView, SIGNAL(updateOpenGL()), this, SLOT(updateGL()));
-//    m_Light.setPosition(15.0, 15.0, 0.0);
-//    m_Light.setAmbientColor(Qt::black);
-
-//    m_GlView.cameraHandle()->setDefaultUpVector(glc::Z_AXIS);
-//    m_GlView.cameraHandle()->setIsoView();
-
-
 	QColor repColor;
 //	repColor.setRgbF(1.0, 0.11372, 0.11372, 1.0);
     repColor.setRgbF(0.11372,1.0 , 0.11372, 1.0);
     m_MoverController= GLC_Factory::instance()->createDefaultMoverController(repColor, &m_GlView);
     m_Rectangle.geomAt(0)->replaceMasterMaterial(new GLC_Material(QColor(Qt::red)));
 
-    vertices
-//            <<GLC_Vector3d(-60000,500,-36000)
-//           <<GLC_Vector3d(-60000,500,-10000)
-//          <<GLC_Vector3d(-4000,500,-10000)
-//         <<GLC_Vector3d(-4000,500,-44000)
-//        <<GLC_Vector3d(4000,500,-44000)
-       <<GLC_Vector3d(4000,500,-10000)
-      <<GLC_Vector3d(63000,500,-10000)
+    vertices<<GLC_Vector3d(4000,500,-10000)<<GLC_Vector3d(63000,500,-10000)
      <<GLC_Vector3d(63000,500,-36000);
-//    vertices
-//            <<GLC_Vector3d(100.0,4000.0,-100.0)
-//           <<GLC_Vector3d(35000.0,4000.0,-40000.0)
-//           <<GLC_Vector3d(35000.0,4000.0,-100.0)
-//          <<GLC_Vector3d(60000.0,4000.0,-100.0)
-//          <<GLC_Vector3d(60000.0,4000.0,-40000.0);
-	// Create objects to display
     CreateScene();
-//    ComputePath();
-//    SetSphere();
-
-//    connect(&m_MotionTimer,SIGNAL(timeout()),this,SLOT(MoveObject()));
-
 //////////////////////////End GLC specific/////////////////////////////////////
 }
 
@@ -136,15 +110,9 @@ void GLWidget::initializeGL()
 
     m_Light.setTwoSided(true);
     m_Light.setPosition(1.0, 1.0, 1.0);
-
-	// Reframe the scene on the loaded mesh
     m_GlView.reframe(m_World.boundingBox());
     m_GlView.cameraHandle()->rotateAroundTarget(glc::X_AXIS,-glc::PI/4);
     m_GlView.cameraHandle()->setDistEyeTarget(160000);
-//    m_MotionTimer.start(30);
-//    MoveAlongPath();
-
-
 }
 
 void GLWidget::paintGL()
@@ -222,13 +190,6 @@ void GLWidget::ComputePath()
     matGreen.setRgb(129,255,129);
 //    matGreen.setHsl(80,240,182);
     GLC_Texture* cTex = new GLC_Texture(QImage("E:/3DMap/MyModel/circle.jpg"));
-//    QVector<GLC_Vector3d> vertices;
-//    vertices
-//            <<GLC_Vector3d(100.0,4000.0,-100.0)
-//           <<GLC_Vector3d(35000.0,4000.0,-40000.0)
-//           <<GLC_Vector3d(35000.0,4000.0,-100.0)
-//          <<GLC_Vector3d(60000.0,4000.0,-100.0)
-//          <<GLC_Vector3d(60000.0,4000.0,-30000.0);
     GLC_3DViewInstance circle(GLC_Factory::instance()->createCylinder(
                                   1500,1));
 //    circle.geomAt(0)->replaceMasterMaterial(new GLC_Material(matGreen));
@@ -350,13 +311,6 @@ void GLWidget::Select(const int x, const int y)
     setAutoBufferSwap(true);
     if(SelectionID != 0 && m_World.containsOccurrence(SelectionID))
     {
-//        qDebug()<<"---------------------------------------";
-//        qDebug()<<"SelectionID:   "<<SelectionID;
-//        qDebug()<<"---------------------------------------";
-//        m_World.unselectAll();
-//        GLC_3DViewInstance instance(*m_World.collection()->instanceHandle(SelectionID));
-//        instance.geomAt(0)->firstMaterial()->setAmbientColor(Qt::blue);
-//        instance.geomAt(0)->firstMaterial()->setDiffuseColor(QColor::fromRgbF(0.5,0.8,1.0,0.2));
         m_World.unselectAll();
         m_World.select(SelectionID);
     }
@@ -413,19 +367,6 @@ void GLWidget::mouseMoveEvent(QMouseEvent * e)
         double a = deltaX * (glc::PI / static_cast<double>(1800));
         double b = deltaY * (glc::PI / static_cast<double>(1800));
         GLC_Vector3d up = GLC_Vector3d(0,1,0);
-//        GLC_Vector3d side = m_GlView.cameraHandle()->sideVector();
-//        qDebug()<<"angle forward:   "<<m_GlView.cameraHandle()->forward().angleWithVect(up);
-//        qDebug()<<"angle up:   "<<m_GlView.cameraHandle()->upVector().angleWithVect(up);
-//        if(b > 0)
-//        {
-//            if(m_GlView.cameraHandle()->upVector().angleWithVect(up) > glc::PI / static_cast<double>(2))
-//                b = 0;
-//        }
-//        if(b < 0)
-//        {
-//            if(m_GlView.cameraHandle()->forward().angleWithVect(up) <glc::PI / static_cast<double>(2))
-//                b = 0;
-//        }
         m_GlView.cameraHandle()->rotateAroundTarget(up,-a);
         m_GlView.cameraHandle()->rotateAroundTarget(m_GlView.cameraHandle()->sideVector(),-b);
         updateGL();
@@ -433,8 +374,6 @@ void GLWidget::mouseMoveEvent(QMouseEvent * e)
     }
     lastMousePosition = e->pos();
     e->accept();
-//    qDebug()<<"x: "<<e->pos().x()<<"   y: "<<e->pos().y();
-
 }
 
 void GLWidget::mouseReleaseEvent(QMouseEvent*)
@@ -444,7 +383,6 @@ void GLWidget::mouseReleaseEvent(QMouseEvent*)
 		m_MoverController.setNoMover();
 		updateGL();
 	}
-    //    e->ignore();
 }
 
 void GLWidget::wheelEvent(QWheelEvent *event)
@@ -463,16 +401,11 @@ void GLWidget::wheelEvent(QWheelEvent *event)
 
 void GLWidget::MoveObject()
 {
-//    qDebug()<<"(record+unit).length()"<<(record+unit).length();
-//    qDebug()<<"direction.length()"<<direction.length();
     if((record+unit).length() > direction.length())
     {
         m_Sphere.translate(direction-record);
         const double *tm = m_Sphere.matrix().getData();
         if(fenceFlag)
-        emit fenceWarning(elecFence.PtInPolygon(QPoint(tm[12],tm[14])));
-//        qDebug()<<elecFence.PtInPolygon(QPoint(tm[12],tm[14]));
-//        m_GlView.cameraHandle()->setTargetCam(GLC_Point3d(tm[12],0,tm[14]));
         updateGL();
         vi++;
         if(vi > vertices.length()-1)
@@ -490,13 +423,7 @@ void GLWidget::MoveObject()
     const double *tm = m_Sphere.matrix().getData();
     if(fenceFlag)
     emit fenceWarning(elecFence.PtInPolygon(QPoint(tm[12],tm[14])));
-//    qDebug()<<elecFence.PtInPolygon(QPoint(tm[12],tm[14]));
-//    m_GlView.cameraHandle()->setTargetCam(GLC_Point3d(tm[12],0,tm[14]));
-//    for(int i=0;i<16;i++)
-//        qDebug()<<tm[i];
-//    qDebug()<<"-----------------------------------";
     record = record + unit;
-//    qDebug()<<"record:   "<<record.length();
     updateGL();
 }
 
@@ -510,9 +437,7 @@ void GLWidget::trace()
 
 void GLWidget::isoView1()
 {
-    qDebug()<<"isoView1";
     GLC_Camera newCam = m_GlView.cameraHandle()->topView();
-//    m_GlView.cameraHandle()->setCam(newCam);
     m_GlView.cameraHandle()->setCam(newCam.eye(),newCam.target(),m_GlView.cameraHandle()->upVector());
     updateGL();
 
@@ -520,7 +445,6 @@ void GLWidget::isoView1()
 
 void GLWidget::isoView2()
 {
-    qDebug()<<"isoView2";
     GLC_Camera newCam ;
     newCam.setDistEyeTarget(m_GlView.cameraHandle()->distEyeTarget());
     newCam.rotateAroundTarget(glc::X_AXIS,-glc::PI/4);

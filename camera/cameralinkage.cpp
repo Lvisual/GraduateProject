@@ -2,7 +2,7 @@
 #include "static3dwidget.h"
 #include "display3dwidget.h"
 #include "ui_cameralinkage.h"
-
+#include <QDebug>
 CameraLinkage::CameraLinkage(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CameraLinkage)
@@ -49,9 +49,10 @@ CameraLinkage::CameraLinkage(QWidget *parent) :
     hl1->addWidget(Xvalue);
     hl1->addWidget(Yvalue);
     widget1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
-
+    qDebug() << "display3d" << "START"<< endl;
     QWidget *widget3=new Display3dWidget;
-    QWidget *widget4 =new Static3DWidget;
+    qDebug() << "display3d" <<"END" << endl;
+   // QWidget *widget4 =new Static3DWidget;
    // QListView *listview1 =new QListView;
 
     m_naviView = new NaviView(this);
@@ -92,11 +93,12 @@ CameraLinkage::CameraLinkage(QWidget *parent) :
     h12->setSpacing(0);
     h12->addWidget(widget3,3);
     h12->addWidget(m_naviView,1);
-    h12->addWidget(widget4,3);
+    //h12->addWidget(widget4,3);
 
     ver1->addWidget(widget1,1);
     ver1->addLayout(h12,8);
     ver1->addWidget(widget2,1);
+    qDebug() <<"camera linkage\n";
 }
 
 CameraLinkage::~CameraLinkage()

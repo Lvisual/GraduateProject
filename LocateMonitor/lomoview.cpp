@@ -71,6 +71,7 @@ void LoMoView :: mouseMoveEvent(QMouseEvent *event)
     QGraphicsView::mouseMoveEvent(event);
     this->setMouseTracking(true);
     QPoint viewPoint = event->pos();
+    qDebug() <<"viewPoint" <<viewPoint << endl;
     QPointF scenePoint = this->mapToScene(viewPoint);
     QPointF MapPoint = mapToMap(scenePoint);
     emit xlabel(scenePoint.x());
@@ -102,8 +103,6 @@ void LoMoView::drawGridBackground(double width,double penwidth)
         QPainter painter(&pixmap);
         QPen pen(Qt::lightGray);
         pen.setWidth(penwidth);
-
-        qDebug()<<"penwidth:"<<penwidth;
         painter.setPen(pen);
         painter.translate(0, 0);
         painter.drawPolyline(myPolygon1);

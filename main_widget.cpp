@@ -38,7 +38,9 @@ main_widget::main_widget(QWidget *parent) :
     content_widget = new contentwidget();
     lomomainwidget= new LoMoMainWidget();
     jzwidget = new JzWidget();
+    qDebug() <<"hehe";
     bqwidget = new BqWidget();
+    qDebug() <<"haha";
     kqwidget = new KqWidget();
     truebqwidget= new TrueBqWidget();
     mapwidget=new Mapwidget();
@@ -330,7 +332,9 @@ void main_widget::showBqwidget()
     lomomainwidget->hide();
     content_widget->hide();
     jzwidget->hide();
+     qDebug() << "lk";
     bqwidget->show();
+     qDebug() << "Lvisal";
     kqwidget->hide();
     truebqwidget->hide();
     mapwidget->hide();

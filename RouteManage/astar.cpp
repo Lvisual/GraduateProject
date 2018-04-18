@@ -142,9 +142,6 @@ std::list<CPoint *> Astar::GetPath(CPoint &startPoint,CPoint &endPoint)
          return path;
 }
 
-
-
-
 //判断起始点在哪一个三角形内
 int Astar::findPolygon(CPoint point){
      std::vector<CTriangle*>commonTriangleVector1=cbowyer.GetcommonTriangles();
@@ -158,7 +155,6 @@ std::vector<CPoint*> Astar::getSurroundPoints(CPoint point)
 {
     std::vector<CPoint*> surroundPoints;
     int i= this->findPolygon(point);
-    qDebug()<< "i " << i << endl;
     std::list<CTriangle*> m_lstBowyerWatsonTriangleList= cbowyer.GetBowyerWatsonTriangles();
     std::list<CTriangle*>::iterator iter2 = m_lstBowyerWatsonTriangleList.begin();
     qDebug() <<"all the triangle:" << m_lstBowyerWatsonTriangleList.size();
@@ -177,6 +173,5 @@ std::vector<CPoint*> Astar::getSurroundPoints(CPoint point)
            surroundPoints.push_back((*iter2)->getCenter());
         }
     }
-    qDebug() << "surroundingSize" << surroundPoints.size();
     return surroundPoints;
 }

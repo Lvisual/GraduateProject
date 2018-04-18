@@ -1,7 +1,5 @@
 #ifndef BOWYERWATSON_H
 #define BOWYERWATSON_H
-
-
 #include <QMainWindow>
 #include <list>
 #include "Point.h"

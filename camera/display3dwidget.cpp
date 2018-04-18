@@ -12,7 +12,6 @@ Display3dWidget::Display3dWidget()
     button_2 = new QToolButton();
     button_3 = new QToolButton();
     button_1->setText(QStringLiteral("导航"));
-//    button_2->setText(QString::fromLocal8Bit("俯视"));
     button_2->setText(QStringLiteral("俯视"));
     button_3->setText(QStringLiteral("电子围栏"));
     V_Layout_1 = new QVBoxLayout();
@@ -33,27 +32,19 @@ Display3dWidget::Display3dWidget()
     connect(button_1,SIGNAL(clicked(bool)),p_GLWidget,SLOT(trace()));
     connect(button_2,SIGNAL(clicked(bool)),p_GLWidget,SLOT(isoView1()));
     connect(button_3,SIGNAL(clicked(bool)),p_GLWidget,SLOT(makePolygon()));
-
     L_warning = new QLabel();
     L_warning->setText("您已进入电子围栏");
-
     QVBoxLayout *layout_warning = new QVBoxLayout();
     layout_warning->addWidget(L_warning);
-
     D_warning = new QDialog();
     D_warning->setLayout(layout_warning);
-
     coorX = new QLabel();
     coorX->setText(QStringLiteral("X坐标:"));
-
     coorY = new QLabel();
     coorY->setText(QStringLiteral("Y坐标:"));
-
-
     connect(p_GLWidget,SIGNAL(fenceWarning(bool)),this,SLOT(fWanring(bool)));
     connect(p_GLWidget,SIGNAL(coordinateMod(double,double)),this,SIGNAL(displayCoor(double,double)));
     connect(p_GLWidget,SIGNAL(isFence(bool)),p_GLWidget,SLOT(changeFlag(bool)));
-
 }
 
 void Display3dWidget::fWanring(bool tf)

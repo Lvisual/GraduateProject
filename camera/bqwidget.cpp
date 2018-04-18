@@ -62,7 +62,6 @@ BqWidget::BqWidget(QWidget *parent) :
     h12->setSpacing(0);
     h12->addWidget(m_naviView);
     h12->addWidget(m_navBtn);
-
     QHBoxLayout *h13 = new QHBoxLayout;
     h13->setSpacing(0);
     h13->addWidget(m_stackedwidget);
@@ -70,7 +69,6 @@ BqWidget::BqWidget(QWidget *parent) :
     h11->addLayout(h12,1);
     h11->addLayout(h13,5);
     ver1->addLayout(h11);
-
 }
 
 BqWidget::~BqWidget()

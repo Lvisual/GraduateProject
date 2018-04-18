@@ -131,7 +131,7 @@ titlewidget::titlewidget(QWidget *parent)
     button_list.at(1)->setText(QStringLiteral("基站管理"));
     button_list.at(2)->setText(QStringLiteral("摄像头联动"));
     button_list.at(3)->setText(QStringLiteral("标签管理"));
-    button_list.at(4)->setText(QStringLiteral("考勤管理"));
+    button_list.at(4)->setText(QStringLiteral("轨迹管理"));
     button_list.at(5)->setText(QStringLiteral("地图管理"));
     button_list.at(6)->setText(QStringLiteral("人员管理"));
     button_list.at(7)->setText(QStringLiteral("路径管理"));

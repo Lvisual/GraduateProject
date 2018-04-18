@@ -9,6 +9,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QHBoxLayout>
+#include "mapscene.h"
 using namespace std;
 IndoorManage::IndoorManage(QWidget *parent) : QWidget(parent)
 {
@@ -44,7 +45,7 @@ IndoorManage::IndoorManage(QWidget *parent) : QWidget(parent)
     QHBoxLayout *h2=new QHBoxLayout();
     h2->setSpacing(10);
     m_view =new ElecFencingView();
-    m_scene=new DrawScene();
+    m_scene=new IndoorScene();
     m_view->setScene(m_scene);
     m_scene->setSceneRect(-m_view->rect().width()/2,-m_view->rect().height()/2,m_view->rect().width(),m_view->rect().height());
    // view1->show();
@@ -105,7 +106,6 @@ IndoorManage::IndoorManage(QWidget *parent) : QWidget(parent)
     h2->addLayout(v2,1);
     ver1->addLayout(hor1,1);
     ver1->addLayout(h2,10);
-    qDebug() << "hehe";
 }
 
 void IndoorManage::loadIndoorMap(){
@@ -113,7 +113,7 @@ void IndoorManage::loadIndoorMap(){
     {
         m_scene->clear();
     }
-    m_scene->open_file();
+    m_scene->openFile();
 }
 
 void IndoorManage::findPath(){
@@ -123,7 +123,6 @@ void IndoorManage::findPath(){
     QString str = "indoorData.txt";
     file.readFile(str);
     int rowCount = file.getRow();
-    qDebug() <<"row" << rowCount << endl;
     QString *buffer = file.getBuffer();
     for(int i = 0;i < rowCount;i++){
         QStringList list = buffer[i].split(' ');

@@ -17,9 +17,8 @@
 #include "Maps/moveitem.h"
 #include "Maps/newroute.h"
 #include "Maps/userpath.h"
+#include "mapscene.h"
 #include <QMap>
-#include "indoormanage.h"
-
 namespace Ui {
 class RouteManage;
 }
@@ -39,6 +38,7 @@ public:
         int beginId;
         int endId;
     };
+    void mousePressEvent(QMouseEvent *e);
 
 signals:
     void pathdata(pathData& data);
@@ -54,9 +54,9 @@ public slots:
 private:
     Ui::RouteManage *ui;
 
-    DrawScene *scene1;
+    MapScene *scene1;
     ElecFencingView *view1;
-
+    IndoorManage *m_indoorManage;
     QString m_currentPath;                      // open file时的路径
     QVector<QPoint> m_allpoints;
     QVector<QPoint> m_pathpoints;
@@ -83,16 +83,10 @@ private:
     QToolButton *m_fresh;
     QToolButton *m_indoorMap;
 
-    IndoorManage *m_indoorWin;
-
 private slots:
     void drawPath(userPoint &data);
     void addWin();
     void setMap();
-
-
-
-
 };
 
 #endif // ROUTEMANAGE_H

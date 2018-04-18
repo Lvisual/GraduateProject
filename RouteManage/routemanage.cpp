@@ -42,15 +42,14 @@ RouteManage::RouteManage(QWidget *parent) :
     connect(jiazailujing,SIGNAL(clicked()) , this, SLOT(addWin()));
     connect(m_fresh,SIGNAL(clicked()),this,SLOT(fresh()));
     connect(m_indoorMap,SIGNAL(clicked()),this,SLOT(showIndoor()));
-
     QHBoxLayout *h2=new QHBoxLayout();
     h2->setSpacing(10);
     view1 =new ElecFencingView();
-    scene1=new DrawScene();
+    scene1=new MapScene();
     view1->setScene(scene1);
     //scene1->drawGridBackground(50);
     scene1->setSceneRect(-view1->rect().width()/2,-view1->rect().height()/2,view1->rect().width(),view1->rect().height());
-    view1->show();
+    //view1->show();
     view1->setSizePolicy(QSizePolicy::Expanding , QSizePolicy :: Expanding);
     h2->addWidget(view1 ,6);
     QVBoxLayout *v2=new QVBoxLayout();
@@ -125,7 +124,7 @@ void RouteManage::jiazai()
     {
         scene1->clear();
     }
-    scene1->open_file();
+    scene1->openFile();
 }
 
 
@@ -194,8 +193,8 @@ void RouteManage::getMapPath(int beginId,int endId){
 }
 
 void RouteManage::showIndoor(){
-    m_indoorWin = new IndoorManage;
-    m_indoorWin->show();
+    m_indoorManage = new IndoorManage;
+    m_indoorManage->show();
 }
 
 
@@ -238,4 +237,16 @@ void RouteManage::setMap(){
 void RouteManage::fresh(){
   scene1->clear();
 }
+
+void RouteManage::mousePressEvent(QMouseEvent *e){
+
+}
+
+
+
+
+
+
+
+
 
