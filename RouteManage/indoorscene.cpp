@@ -6,6 +6,8 @@
 #include <list>
 using namespace  std;
 IndoorScene::IndoorScene(QObject *parent):QGraphicsScene(parent){
+startItem = new TargetItem(0);
+endItem = new TargetItem(1);
 initAstar();
 }
 
@@ -97,10 +99,17 @@ void IndoorScene :: openFile()
    if(clickItem==nullptr){
    qDebug() << pos <<endl;
    CPoint temp(pos.x(),pos.y());
-   if(m_startendVec.size()<=1){
+   if(m_startendVec.size()==0){
+       startItem->setPos(pos);
+       this->addItem(startItem);
        m_startendVec.push_back(temp);
+   }else{
+       if(m_startendVec.size()==1){
+           endItem->setPos(pos);
+           this->addItem(endItem);
+           m_startendVec.push_back(temp);
+       }
    }
-   qDebug() << "m_size" << m_startendVec.size();
    if(m_startendVec.size()==2){
        drawPath();
        m_startendVec.clear();

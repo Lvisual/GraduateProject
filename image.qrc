@@ -217,5 +217,7 @@
         <file>images/zhexian.jpg</file>
         <file>images/zhexian_1.png</file>
         <file>images/zhifang_1.jpg</file>
+        <file>images/end3.png</file>
+        <file>images/start3.png</file>
     </qresource>
 </RCC>

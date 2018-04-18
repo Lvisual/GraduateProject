@@ -26,6 +26,7 @@
 #include "Maps/drawobj.h"
 #include "astar.h"
 #include <QQueue>
+#include "targetitem.h"
 class IndoorScene : public QGraphicsScene
 {
     Q_OBJECT
@@ -39,6 +40,9 @@ signals:
 public slots:
     void drawPath();
 private:
+TargetItem *startItem;
+TargetItem *endItem;
+
 QString currentPath;
 Astar m_astar;
 void initAstar();

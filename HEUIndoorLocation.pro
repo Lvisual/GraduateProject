@@ -129,7 +129,8 @@ SOURCES += main.cpp\
     RouteManage/Triangle.cpp \
     RouteManage/indoormanage.cpp \
     RouteManage/mapscene.cpp \
-    RouteManage/indoorscene.cpp
+    RouteManage/indoorscene.cpp \
+    RouteManage/targetitem.cpp
 
 HEADERS  += mainwindow.h \
     titlewidget.h \
@@ -235,7 +236,8 @@ HEADERS  += mainwindow.h \
     RouteManage/Triangle.h \
     RouteManage/indoormanage.h \
     RouteManage/mapscene.h \
-    RouteManage/indoorscene.h
+    RouteManage/indoorscene.h \
+    RouteManage/targetitem.h
 
 FORMS    += mainwindow.ui \
     titlewidget.ui \
