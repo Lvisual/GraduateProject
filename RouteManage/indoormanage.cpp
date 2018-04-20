@@ -13,6 +13,7 @@
 using namespace std;
 IndoorManage::IndoorManage(QWidget *parent) : QWidget(parent)
 {
+    setFixedSize(1050, 625);
     QPalette palette;
     palette.setBrush(QPalette::Window, QBrush(Qt::white));
     setPalette(palette);
@@ -146,6 +147,7 @@ void IndoorManage::findPath(){
     QVector<QPoint> pathVec;
     list<CPoint*>::iterator it = path.begin();
     while(it!=path.end()){
+      //  qDebug() <<"hahaha"<< QPoint((*it)->x,(*it)->y);
         pathVec.push_back(QPoint((*it)->x,(*it)->y));
         it++;
     }

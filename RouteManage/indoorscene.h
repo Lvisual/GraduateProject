@@ -42,12 +42,13 @@ public slots:
 private:
 TargetItem *startItem;
 TargetItem *endItem;
-
 QString currentPath;
 Astar m_astar;
-void initAstar();
+void initScene(); //初始化场景，设置地图图元
+void initAstar();//初始化A*算法
 void initIndoorMap();
 QVector<CPoint> m_startendVec;
+
 };
 
 #endif // INDOORSCENE_H

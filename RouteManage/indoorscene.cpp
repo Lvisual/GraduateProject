@@ -9,6 +9,7 @@ IndoorScene::IndoorScene(QObject *parent):QGraphicsScene(parent){
 startItem = new TargetItem(0);
 endItem = new TargetItem(1);
 initAstar();
+initScene();
 }
 
 
@@ -92,12 +93,10 @@ void IndoorScene :: openFile()
 }
 
   void IndoorScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
-   qDebug() << "hehe";
    QPointF pos= event->scenePos();
    QTransform transform;
    QGraphicsItem *clickItem = this->itemAt(pos,transform);
    if(clickItem==nullptr){
-   qDebug() << pos <<endl;
    CPoint temp(pos.x(),pos.y());
    if(m_startendVec.size()==0){
        startItem->setPos(pos);
@@ -119,7 +118,7 @@ void IndoorScene :: openFile()
 
   void IndoorScene::initAstar(){
       m_astar.cbowyer.ClearBowyerWatson();
-      m_astar.cbowyer.CreateHelperPoint(CPoint(-280,-280),CPoint(-280,280),CPoint(280,280),CPoint(280,-280));
+      m_astar.cbowyer.CreateHelperPoint(CPoint(-500,-400),CPoint(-500,400),CPoint(500,400),CPoint(500,-400));
       BwFile file;
       QString str = "indoorData.txt";
       file.readFile(str);
@@ -141,21 +140,31 @@ void IndoorScene :: openFile()
   void IndoorScene::drawPath(){
       CPoint start = m_startendVec[0];
       CPoint end = m_startendVec[1];
-     // list<CPoint*> path = m_astar.GetPath(start,end);
+      list<CPoint*> path = m_astar.GetPath(start,end);
       QVector<QPoint> pathVec;
-      pathVec.push_back(QPoint(start.x,start.y));
-      pathVec.push_back(QPoint(end.x,end.y));
-//      list<CPoint*>::iterator it = path.begin();
-//      while(it!=path.end()){
-//          qDebug()<<QPoint((*it)->x,(*it)->y)<<endl;
-//          pathVec.push_back(QPoint((*it)->x,(*it)->y));
-//          it++;
-//      }
+      list<CPoint*>::iterator it = path.begin();
+     while(it!=path.end()){
+          qDebug()<<"hehe" << QPoint((*it)->x,(*it)->y)<<endl;
+          pathVec.push_back(QPoint((*it)->x,(*it)->y));
+          it++;
+      }
       Route *planRoute = new Route(pathVec);
       this->addItem(planRoute);
   }
-
-
+  void IndoorScene::initScene(){
+     QVector< QVector<QPointF> > obstacle = m_astar.cbowyer.m_obstacle;
+     for(int i = 0;i < obstacle.size();i++){
+        QGraphicsPolygonItem *poly=new QGraphicsPolygonItem();
+        QPolygonF polygon;
+         for(int j = 0;j<obstacle[i].size();j++){
+             polygon<< obstacle[i][j];
+         }
+         poly->setPolygon(polygon);
+         poly->setBrush(QColor(40,218,76,70));
+         poly->setZValue(70);
+         this->addItem(poly);
+  }
+}
 
 
 
