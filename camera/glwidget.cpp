@@ -178,7 +178,6 @@ void GLWidget::CreateScene()
 //    QFile manFile("E:/GLC_lib-master/src/examples/map/21A.3ds");
     QFile manFile("E:/3DMap/MyModel/21A.3ds");
     m_World= GLC_Factory::instance()->createWorldFromFile(manFile);
-
     m_World.rootOccurrence()->structInstance()->move(GLC_Matrix4x4(glc::X_AXIS,-glc::PI/2));
     m_World.rootOccurrence()->updateChildrenAbsoluteMatrix();
 }
@@ -326,7 +325,7 @@ void GLWidget::mousePressEvent(QMouseEvent *e)
     e->accept();
     if(e->buttons() & Qt::LeftButton)
     {
-//        qDebug()<<"x: "<<e->pos().x()<<"   y: "<<e->pos().y();
+        qDebug()<<"x: "<<e->pos().x()<<"   y: "<<e->pos().y();
         GLC_Point3d p = m_GlView.unproject(e->pos().x(),e->pos().y());
 //        qDebug()<<"x: "<<p.x()<<" z: "<<p.z();
         emit coordinateMod(p.x(),p.z());

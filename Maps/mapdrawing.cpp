@@ -580,13 +580,13 @@ void MapDrawing::initToolBar()
     shapeGroup->addAction(rotation_act);
     shapeBar->addAction(rotation_act);
 
-    brush_act = new QAction(QIcon(":/new/images/floodfill.png"), "Set Item Brush ", shapeBar);
+    brush_act = new QAction(QIcon(":/new/images/brush.png"), "Set Item Brush ", shapeBar);
     brush_act->setShortcut(tr("Ctrl+B"));
     brush_act->setCheckable(true);
     shapeGroup->addAction(brush_act);
     shapeBar->addAction(brush_act);
 
-    color_act = new QAction(QIcon(":/new/images/ok.png"), "Set Bound Color ", shapeBar);
+    color_act = new QAction(QIcon(":/new/images/bound.png"), "Set Bound Color ", shapeBar);
     color_act->setShortcut(tr("Ctrl+C"));
     color_act->setCheckable(true);
     shapeGroup->addAction(color_act);

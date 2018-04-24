@@ -81,7 +81,7 @@ private:
     QToolButton *jiazailujing;
     QToolButton *jiazaiditu;
     QToolButton *m_fresh;
-    QToolButton *m_indoorMap;
+ //   QToolButton *m_indoorMap;
 
 private slots:
     void drawPath(userPoint &data);

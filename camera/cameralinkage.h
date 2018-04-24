@@ -27,7 +27,7 @@ public:
     ~CameraLinkage();
 public slots:
     void setscenexlabelvalue(double,double);
-
+    void setMap();
 private:
     Ui::CameraLinkage *ui;
     QPushButton *xuanze;
@@ -43,6 +43,7 @@ private:
     QLabel *Yvalue;
 
     NaviView * m_naviView;
+
 };
 
 #endif // CAMERALINKAGE_H

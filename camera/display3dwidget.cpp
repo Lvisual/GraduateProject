@@ -1,7 +1,7 @@
 #include <QtGui>
 #include "display3dwidget.h"
 #include "glwidget.h"
-
+#include "ccustommessagebox.h"
 Display3dWidget::Display3dWidget()
 : p_GLWidget(NULL)
 {
@@ -42,6 +42,7 @@ Display3dWidget::Display3dWidget()
     coorX->setText(QStringLiteral("X坐标:"));
     coorY = new QLabel();
     coorY->setText(QStringLiteral("Y坐标:"));
+    warningbox = new CCustomMessageBox(CCustomMessageBox::CUSTOM_MESSAGE_WARNING,QStringLiteral("WARN"),QStringLiteral("硬件标签进入危险区域"),this);
     connect(p_GLWidget,SIGNAL(fenceWarning(bool)),this,SLOT(fWanring(bool)));
     connect(p_GLWidget,SIGNAL(coordinateMod(double,double)),this,SIGNAL(displayCoor(double,double)));
     connect(p_GLWidget,SIGNAL(isFence(bool)),p_GLWidget,SLOT(changeFlag(bool)));
@@ -49,10 +50,11 @@ Display3dWidget::Display3dWidget()
 
 void Display3dWidget::fWanring(bool tf)
 {
-    if(tf)
-        D_warning->show();
+    if(tf){
+       warningbox->show();
+    }
     else
-        D_warning->close();
+       warningbox->close();
 }
 
 

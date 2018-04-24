@@ -14,6 +14,7 @@ hlayout1->addWidget(m_addBtn);
 hlayout1->addWidget(m_deleteBtn);
 hlayout1->addWidget(m_freshBtn);
 hlayout1->addWidget(m_findBtn);
+hlayout1->setAlignment(Qt::AlignLeft);
 setupModel();
 m_tableView= new QTableView();
 m_tableView->setModel(m_model);

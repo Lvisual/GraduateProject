@@ -7,7 +7,7 @@
 #include <QDialog>
 #include <QLabel>
 //#include "RouteManage/ccustommessagebox.h"
-
+#include "ccustommessagebox.h"
 class GLWidget;
 class Display3dWidget : public QWidget
 {
@@ -23,16 +23,11 @@ public:
     QLabel *coorY;
     QDialog *D_warning;
     QLabel *L_warning;
-
-
+   CCustomMessageBox *warningbox;
 signals:
-
     void displayCoor(double x,double y);
-
 public slots:
     void fWanring(bool tf);
-
-
 private:
     GLWidget *p_GLWidget;
 };

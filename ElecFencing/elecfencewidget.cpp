@@ -53,18 +53,22 @@ ElecFenceWidget::ElecFenceWidget(QWidget *parent) :
 
     jiazaiditu=new QToolButton();
     jiazaiditu->setText(QStringLiteral("加载地图"));
+
+    m_fresh = new QToolButton();
+    m_fresh->setText(QStringLiteral("刷新"));
     connect(jiazaiditu,SIGNAL(clicked()) , this, SLOT(jiazai()));
-    location =new QToolButton();
-    location->setText(QStringLiteral("开始定位"));
-    endlocation =new QToolButton();
-    endlocation->setText(QStringLiteral("终止定位"));
-    m_monitorRoute = new QToolButton();
-    m_monitorRoute->setText(QStringLiteral("实时路径"));
+    //location =new QToolButton();
+    //location->setText(QStringLiteral("开始定位"));
+   // endlocation =new QToolButton();
+    //endlocation->setText(QStringLiteral("终止定位"));
+  //  m_monitorRoute = new QToolButton();
+   // m_monitorRoute->setText(QStringLiteral("实时路径"));
 
     h1->addWidget(jiazaiditu);
-    h1->addWidget(location);
-    h1->addWidget(endlocation);
-    h1->addWidget(m_monitorRoute);
+    h1->addWidget(m_fresh);
+   // h1->addWidget(location);
+    //h1->addWidget(endlocation);
+  //  h1->addWidget(m_monitorRoute);
     QHBoxLayout *h2=new QHBoxLayout();
     h2->setSpacing(10);
 
@@ -162,19 +166,18 @@ ElecFenceWidget::ElecFenceWidget(QWidget *parent) :
     m_simulate = new QToolButton();
     m_simulate->setText(QStringLiteral("仿真"));
 
-    m_showHistory = new QToolButton();
-    m_showHistory->setText(QStringLiteral("历史轨迹"));
-
-    m_fresh = new QToolButton();
-    m_fresh->setText(QStringLiteral("刷新"));
+   // m_showHistory = new QToolButton();
+   // m_showHistory->setText(QStringLiteral("历史轨迹"));
 
 
-    connect(m_monitorRoute,SIGNAL(clicked(bool)),this,SLOT(showMonitorWin()));
+
+
+   // connect(m_monitorRoute,SIGNAL(clicked(bool)),this,SLOT(showMonitorWin()));
     connect(jiazaiwenjian , SIGNAL (clicked()), this, SLOT(ReadFile()));
     connect(m_simulate, SIGNAL (clicked()), this, SLOT(simulate()));
     connect(m_man1,SIGNAL(currrentPos(QPointF)),this,SLOT(monitor1(QPointF)));
     connect(m_man2,SIGNAL(currrentPos(QPointF)),this,SLOT(monitor2(QPointF)));
-    connect(m_showHistory,SIGNAL(clicked()),this,SLOT(showHistoryWin()));
+   // connect(m_showHistory,SIGNAL(clicked()),this,SLOT(showHistoryWin()));
     connect(m_fresh,SIGNAL(clicked()),this,SLOT(fresh()));
 
     v2->addLayout(vn1);
@@ -184,8 +187,8 @@ ElecFenceWidget::ElecFenceWidget(QWidget *parent) :
     v2->addLayout(hn1);
     v2->addLayout(hn2);
     v2->addWidget(m_simulate);
-    v2->addWidget(m_showHistory);
-    v2->addWidget(m_fresh);
+   // v2->addWidget(m_showHistory);
+  //  v2->addWidget(m_fresh);
     h2->addLayout(v2,1);
     v1->addLayout(h1,1);
     v1->addLayout(h2,10);
@@ -400,7 +403,7 @@ void ElecFenceWidget::monitor2(QPointF data){
         QPoint p = data.toPoint();
         if(m_position->PtInPolygon(p)){
             m_thread2.stop();
-         CCustomMessageBox *warnbox = new CCustomMessageBox(CCustomMessageBox::CUSTOM_MESSAGE_WARNING,QStringLiteral("WARN"),QStringLiteral("A进入危险区域"),this);
+         CCustomMessageBox *warnbox = new CCustomMessageBox(CCustomMessageBox::CUSTOM_MESSAGE_WARNING,QStringLiteral("WARN"),QStringLiteral("硬件标签进入危险区域"),this);
          warnbox->show();
             // QMessageBox::warning(NULL, "warning", "您已进入警戒区", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
           //QMessageBox::warning(this,tr("warning"),tr("<p>he<span style='color: rgb(0, 176, 80);'>ll</span>o,<span style='color: rgb(255, 0, 0); font-size: 24px;'>w</span>orld!</p>"),QMessageBox::Yes);

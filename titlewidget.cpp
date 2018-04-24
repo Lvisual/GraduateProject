@@ -74,12 +74,12 @@ titlewidget::titlewidget(QWidget *parent)
     //skin_button->setContentsMargins(0, 0, 10, 0);
 
     QStringList string_list;
-    string_list<<":/new/images/locate.png"<<":/new/images/jizhan.png"<<":/new/images/camera.png"<<":/new/images/biaoqian.png"<<":/new/images/kaoqin.png"
-              <<":/new/images/maps.png"<<":/new/images/person.png"<<":/new/images/way.png"<<":/new/images/gard.png"
-           /*  <<":/new/images/xunluo.png"*/;
-
+  //  string_list<<":/new/images/locate.png"<<":/new/images/jizhan.png"<<":/new/images/camera.png"<<":/new/images/biaoqian.png"<<":/new/images/kaoqin.png"
+    //          <<":/new/images/maps.png"<<":/new/images/person.png"<<":/new/images/way.png"<<":/new/images/gard.png"
+     //      /*  <<":/new/images/xunluo.png"*/;
+    string_list<<":/new/images/locate.png"<<":/new/images/camera.png"<<":/new/images/way.png"<<":/new/images/gard.png"<<":/new/images/maps.png"<<":/new/images/jizhan.png"<<":/new/images/biaoqian.png"
+              <<":/new/images/person.png"<<":/new/images/kaoqin.png";
     QHBoxLayout *button_layout = new QHBoxLayout();
-
     QSignalMapper *signal_mapper = new QSignalMapper(this);
     for(int i=0; i<string_list.size(); i++)
     {
@@ -87,7 +87,6 @@ titlewidget::titlewidget(QWidget *parent)
         button_list.append(tool_button);
         connect(tool_button, SIGNAL(clicked()), signal_mapper, SLOT(map()));
         signal_mapper->setMapping(tool_button, QString::number(i, 10));
-
         button_layout->addWidget(tool_button, 0, Qt::AlignBottom);
     }
     connect(signal_mapper, SIGNAL(mapped(QString)), this, SLOT(turnPage(QString)));
@@ -127,26 +126,47 @@ titlewidget::titlewidget(QWidget *parent)
     warning_button->setToolTip(tr("warning"));
     close_button->setToolTip(tr("close"));
 
-    button_list.at(0)->setText(QStringLiteral("定位监控"));
-    button_list.at(1)->setText(QStringLiteral("基站管理"));
-    button_list.at(2)->setText(QStringLiteral("摄像头联动"));
-    button_list.at(3)->setText(QStringLiteral("标签管理"));
-    button_list.at(4)->setText(QStringLiteral("轨迹管理"));
-    button_list.at(5)->setText(QStringLiteral("地图管理"));
-    button_list.at(6)->setText(QStringLiteral("人员管理"));
-    button_list.at(7)->setText(QStringLiteral("路径管理"));
-    button_list.at(8)->setText(QStringLiteral("电子围栏"));
-  //  button_list.at(9)->setText(QStringLiteral("巡逻管理"));
+//    button_list.at(0)->setText(QStringLiteral("定位监控"));
+//    button_list.at(1)->setText(QStringLiteral("基站管理"));
+//    button_list.at(2)->setText(QStringLiteral("摄像头联动"));
+//    button_list.at(3)->setText(QStringLiteral("标签管理"));
+//    button_list.at(4)->setText(QStringLiteral("轨迹管理"));
+//    button_list.at(5)->setText(QStringLiteral("地图管理"));
+//    button_list.at(6)->setText(QStringLiteral("人员管理"));
+//    button_list.at(7)->setText(QStringLiteral("路径管理"));
+//    button_list.at(8)->setText(QStringLiteral("电子围栏"));
+//    button_list.at(9)->setText(QStringLiteral("巡逻管理"));
 
-   connect( button_list.at(0), SIGNAL(clicked()), this, SIGNAL(showDwwidget()));
-   connect( button_list.at(1), SIGNAL(clicked()), this, SIGNAL(showJzwidget()));
-   connect( button_list.at(2), SIGNAL(clicked()), this, SIGNAL(showBqwidget()));
-   connect( button_list.at(3), SIGNAL(clicked()), this, SIGNAL(showTrueBqwidget()));
-   connect( button_list.at(4), SIGNAL(clicked()), this, SIGNAL(showKqwidget()));
-   connect( button_list.at(5), SIGNAL(clicked()), this, SIGNAL(showMapwidget()));
-   connect( button_list.at(6), SIGNAL(clicked()), this, SIGNAL(showEmpWidget()));
-   connect( button_list.at(7), SIGNAL(clicked()), this, SIGNAL(showRouteWidget()));
-   connect( button_list.at(8), SIGNAL(clicked()), this, SIGNAL(showElecWidget()));
+    button_list.at(0)->setText(QStringLiteral("定位监控"));
+    button_list.at(1)->setText(QStringLiteral("摄像头联动"));
+    button_list.at(2)->setText(QStringLiteral("路径规划"));
+    button_list.at(3)->setText(QStringLiteral("电子围栏"));
+    button_list.at(4)->setText(QStringLiteral("地图管理"));
+    button_list.at(5)->setText(QStringLiteral("基站管理"));
+    button_list.at(6)->setText(QStringLiteral("标签管理"));
+    button_list.at(7)->setText(QStringLiteral("人员管理"));
+    button_list.at(8)->setText(QStringLiteral("轨迹管理"));
+
+
+//   connect( button_list.at(0), SIGNAL(clicked()), this, SIGNAL(showDwwidget()));
+//   connect( button_list.at(1), SIGNAL(clicked()), this, SIGNAL(showJzwidget()));
+//   connect( button_list.at(2), SIGNAL(clicked()), this, SIGNAL(showBqwidget()));
+//   connect( button_list.at(3), SIGNAL(clicked()), this, SIGNAL(showTrueBqwidget()));
+//   connect( button_list.at(4), SIGNAL(clicked()), this, SIGNAL(showKqwidget()));
+//   connect( button_list.at(5), SIGNAL(clicked()), this, SIGNAL(showMapwidget()));
+//   connect( button_list.at(6), SIGNAL(clicked()), this, SIGNAL(showEmpWidget()));
+//   connect( button_list.at(7), SIGNAL(clicked()), this, SIGNAL(showRouteWidget()));
+//   connect( button_list.at(8), SIGNAL(clicked()), this, SIGNAL(showElecWidget()));
+
+    connect( button_list.at(0), SIGNAL(clicked()), this, SIGNAL(showDwwidget()));
+    connect( button_list.at(1), SIGNAL(clicked()), this, SIGNAL(showBqwidget()));
+    connect( button_list.at(2), SIGNAL(clicked()), this, SIGNAL(showRouteWidget()));
+    connect( button_list.at(3), SIGNAL(clicked()), this, SIGNAL(showElecWidget()));
+    connect( button_list.at(4), SIGNAL(clicked()), this, SIGNAL(showMapwidget()));
+    connect( button_list.at(5), SIGNAL(clicked()), this, SIGNAL(showJzwidget()));
+    connect( button_list.at(6), SIGNAL(clicked()), this, SIGNAL(showTrueBqwidget()));
+    connect( button_list.at(7), SIGNAL(clicked()), this, SIGNAL(showEmpWidget()));
+    connect( button_list.at(8), SIGNAL(clicked()), this, SIGNAL(showKqwidget()));
 //}
 }
 

@@ -27,6 +27,7 @@
 #include "astar.h"
 #include <QQueue>
 #include "targetitem.h"
+#include "Maps/route.h"
 class IndoorScene : public QGraphicsScene
 {
     Q_OBJECT
@@ -39,6 +40,7 @@ public:
 signals:
 public slots:
     void drawPath();
+    void clearRoute();
 private:
 TargetItem *startItem;
 TargetItem *endItem;
@@ -47,7 +49,10 @@ Astar m_astar;
 void initScene(); //初始化场景，设置地图图元
 void initAstar();//初始化A*算法
 void initIndoorMap();
+QVector<QPoint> smooth(QVector<QPoint>vec);
 QVector<CPoint> m_startendVec;
+QVector<QPoint> m_obstacleVec;
+Route *m_route;
 
 };
 

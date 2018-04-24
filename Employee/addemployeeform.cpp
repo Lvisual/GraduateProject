@@ -12,16 +12,14 @@ addEmployeeForm::addEmployeeForm(QWidget *parent) :
     //表单输入
     formlayout=new QFormLayout();
     formlayout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
-    idEdit=new QLineEdit();
+    //idEdit=new QLineEdit();
     nameEdit = new QLineEdit();
     ageEdit = new QLineEdit();
     sexEdit = new QLineEdit();
     phoneEdit = new QLineEdit();
     addressEdit = new QLineEdit();
     remarkEdit = new QLineEdit();
-
-
-    idEdit->setPlaceholderText(QStringLiteral("请输入员工ID"));
+    //idEdit->setPlaceholderText(QStringLiteral("请输入员工ID"));
     nameEdit->setPlaceholderText(QStringLiteral("请输入员工姓名"));
     ageEdit->setPlaceholderText(QStringLiteral("请输入员工年龄"));
     sexEdit->setPlaceholderText(QStringLiteral("请输入员工性别"));
@@ -29,8 +27,7 @@ addEmployeeForm::addEmployeeForm(QWidget *parent) :
     addressEdit->setPlaceholderText(QStringLiteral("请输入员工地址"));
     remarkEdit->setPlaceholderText(QStringLiteral("备注"));
 
-    remarkEdit->setPlaceholderText(QStringLiteral("备注"));
-    formlayout->addRow(QStringLiteral("&员工ID："),idEdit);
+   // formlayout->addRow(QStringLiteral("&员工ID："),idEdit);
     formlayout->addRow(QStringLiteral("&员工姓名: "),nameEdit);
     formlayout->addRow(QStringLiteral("&员工年龄: "),ageEdit);
     formlayout->addRow(QStringLiteral("&员工性别: "),sexEdit);

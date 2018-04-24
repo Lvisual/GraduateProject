@@ -14,11 +14,11 @@ newRoute::newRoute(QVector<QPoint> v)
 
 void newRoute::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
    QPixmap pleft,pright,pup,pdown,padd;
-   pright.load(":/new/images/rightDir.jpg");
-   pleft.load(":/new/images/leftDir.jpg");
-   pup.load(":/new/images/upDir.jpg");
-   pdown.load(":/new/images/downDir.jpg");
-   padd.load(":/new/images/pure.jpg");
+   pright.load(":/new/images/allright.jpg");
+   pleft.load(":/new/images/allleft.jpg");
+   pup.load(":/new/images/allup.jpg");
+   pdown.load(":/new/images/alldown.jpg");
+   padd.load(":/new/images/puregreen.jpg");
    for(int i = 1;i < m_pathPoints.size();i++){
        QPoint start = m_pathPoints[i-1];
        QPoint end = m_pathPoints[i];

@@ -164,15 +164,18 @@ void SelectTool::mouseMoveEvent(QGraphicsSceneMouseEvent *event, DrawScene *scen
         item = qgraphicsitem_cast<GraphicsItem*>(items.first());
         if ( item != 0 ){
             if ( nDragHandle != SizeHandleRect::None && selectMode == size ){
+                qDebug()<<"hahaha" <<endl;
                 QSizeF delta(c_last.x() - c_down.x() , c_last.y() - c_down.y());
                 item->resizeTo(nDragHandle,c_last);
             }
             else if(nDragHandle == SizeHandleRect::None && selectMode == selection ){
                  SizeHandleRect::Direction handle = item->hitTest(event->scenePos());
                  if ( handle != SizeHandleRect::None){
+                     qDebug()<<"heiehei" << endl;
                      setCursor(scene,item->getCursor(handle));
                      m_hoverSizer = true;
                  }else{
+                     qDebug () <<"hehehe" << endl;
                      setCursor(scene,Qt::ArrowCursor);
                      m_hoverSizer = false;
                  }
@@ -203,6 +206,7 @@ void SelectTool::mouseReleaseEvent(QGraphicsSceneMouseEvent *event, DrawScene *s
              item->setPos(initialPositions + c_last - c_down);
              qDebug()<<"move to :" << item->mapFromScene(item->pos());
         }else if ( item !=0 && selectMode == size && c_last != c_down ){
+            qDebug()<<"change size :" << item->mapFromScene(item->pos());
             item->changeSize();
         }
     }
@@ -375,6 +379,7 @@ void RectTool::mousePressEvent(QGraphicsSceneMouseEvent *event, DrawScene *scene
     switch ( c_drawShape ){
 
     case rectangle:
+        qDebug() <<"this is a rectangle";
         item = new GraphicsRectItem(QRect(0,0,0,0),NULL);
         //item->setPen(Qt::NoPen);
         item->setPen(QPen(color,width));

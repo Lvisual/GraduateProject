@@ -32,17 +32,17 @@ IndoorManage::IndoorManage(QWidget *parent) : QWidget(parent)
 
     loadMap =new QToolButton;
     loadMap->setText(QStringLiteral("加载地图"));
-    showRoute =new QToolButton;
-    showRoute->setText(QStringLiteral("路径寻址"));
+    //showRoute =new QToolButton;
+   // showRoute->setText(QStringLiteral("路径寻址"));
     m_fresh = new QToolButton;
-    m_fresh->setText(QStringLiteral("刷新"));
-    hor1->addWidget(loadMap);
-    hor1->addWidget(showRoute);
+    m_fresh->setText(QStringLiteral("路径刷新"));
+    //hor1->addWidget(loadMap);
+    //hor1->addWidget(showRoute);
     hor1->addWidget(m_fresh);
 
    connect(loadMap,SIGNAL(clicked()),this, SLOT(loadIndoorMap()));
     //connect(showRoute,SIGNAL(clicked()) , this, SLOT(addWin()));
-    //connect(m_fresh,SIGNAL(clicked()),this,SLOT(fresh()));
+    connect(m_fresh,SIGNAL(clicked()),this,SLOT(fresh()));
     QHBoxLayout *h2=new QHBoxLayout();
     h2->setSpacing(10);
     m_view =new ElecFencingView();
@@ -155,6 +155,11 @@ void IndoorManage::findPath(){
     m_scene->addItem(planRoute);
     m_view->setScene(m_scene);
 }
+void IndoorManage::fresh(){
+    m_scene=new IndoorScene();
+    m_view->setScene(m_scene);
+}
+
 
 
 void IndoorManage :: setscenexlabelvalue(double x)

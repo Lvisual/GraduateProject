@@ -68,10 +68,13 @@ JzWidget::JzWidget(QWidget *parent) :
     addBase->setText(QStringLiteral("添加"));
     deleteBase=new QPushButton();
     deleteBase->setText(QStringLiteral("删除"));
+    selectBase  = new QPushButton();
+    selectBase->setText(QStringLiteral("查询"));
     hl1->setAlignment(Qt::AlignLeft);
     hl1->addWidget(addBase);
     hl1->addWidget(deleteBase);
     hl1->addWidget(freshBase);
+    hl1->addWidget(selectBase);
     widget_2->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 
 
@@ -123,6 +126,7 @@ JzWidget::JzWidget(QWidget *parent) :
     connect(this->addBase,SIGNAL(clicked()),this,SLOT(addBaseWin()));
     connect(this->deleteBase,SIGNAL(clicked()),this,SLOT(deleteBaseItem()));
     connect(this->freshBase,SIGNAL(clicked()),this,SLOT(freshBaseItem()));
+    connect(this->selectBase,SIGNAL(clicked()),this,SLOT(selectBaseWin()));
 
     connect(this->m_naviView, SIGNAL(clicked(const QModelIndex &)), model, SLOT(Collapse(const QModelIndex&)));
     connect(this->m_naviView, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(switchPage()));
@@ -230,7 +234,17 @@ void JzWidget::addBaseItem(BaseInfo &info){
      baseModel->freshModel();
  }
 
+void JzWidget::selectBaseWin(){
+    selectWin = new SelectBaseForm;
+    selectWin->show();
+    connect(selectWin,SIGNAL(selectBaseId(int)),this,SLOT(selectBaseItem(int)));
+}
 
+void JzWidget::selectBaseItem(int id){
+    QVector<BaseInfo> info = baseStationdao->selectById(id);
+    baseModel->appendBaseInfos(info);
+    baseModel->freshModel();
+}
 
 
 

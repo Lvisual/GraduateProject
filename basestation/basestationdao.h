@@ -27,6 +27,7 @@ private:
     QString select_all_sql = "select id,mac,bstype,x,y,z,remark from "+dataBaseName;
     QString delete_sql = "delete from "+dataBaseName+" where id =?";
     QString clear_sql = "delete from "+dataBaseName;
+    QString select_id_sql = "select * from "+dataBaseName+" where id =?";
     QSqlDatabase db;// = QSqlDatabase::database("QSQLITE"); //建立数据库连接
     QSqlQuery* qry;
 public:
@@ -35,7 +36,7 @@ public:
     QVector<BaseInfo> getPageList(BaseInfo info,int page = 1,int pageSize = 10);
     bool deleteById(int id);
     bool update(BaseInfo info);
-
+    QVector<BaseInfo> selectById(int id);
 signals:
 
 public slots:

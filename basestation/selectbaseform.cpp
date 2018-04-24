@@ -1,48 +1,30 @@
-#include "addlabelform.h"
+#include "selectbaseform.h"
 
-addLabelForm::addLabelForm(QWidget *parent) :
-    QWidget(parent)
-
+SelectBaseForm::SelectBaseForm(QWidget *parent) : QWidget(parent)
 {
-
-    this->setFixedSize(450,600);
+    this->setFixedSize(400,300);
 
     setWindowFlags(Qt::FramelessWindowHint);
 
-    //±íµ¥ÊäÈë
+    //è¡¨å•è¾“å…¥
     formlayout=new QFormLayout();
     formlayout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
-    labelIdEdit=new QLineEdit();
-    employeeIdEdit = new QLineEdit();
-    chargeEdit = new QLineEdit();
-    stateEdit = new QLineEdit();
-    remarkEdit = new QLineEdit();
-
-    labelIdEdit->setPlaceholderText(QString::fromLocal8Bit("ÇëÊäÈë±êÇ©ID"));
-    employeeIdEdit->setPlaceholderText(QString::fromLocal8Bit("ÇëÊäÈëÔ±¹¤ID"));
-    chargeEdit->setPlaceholderText(QString::fromLocal8Bit("ÇëÊäÈë±êÇ©µçÁ¿"));
-    stateEdit->setPlaceholderText(QString::fromLocal8Bit("ÇëÊäÈëÉúÃü×´Ì¬"));
-    remarkEdit->setPlaceholderText(QString::fromLocal8Bit("±¸×¢"));
-
-   // formlayout->addRow(QString::fromLocal8Bit("&±êÇ©ID: "),labelIdEdit);
-    formlayout->addRow(QString::fromLocal8Bit("&Ô±¹¤ID: "),employeeIdEdit);
-    formlayout->addRow(QString::fromLocal8Bit("&µçÁ¿: "),chargeEdit);
-    formlayout->addRow(QString::fromLocal8Bit("&ÉúÃü×´Ì¬: "),stateEdit);
-    formlayout->addRow(QString::fromLocal8Bit("&±¸×¢: "),remarkEdit);
+    idEdit=new QLineEdit();
+    idEdit->setPlaceholderText(QStringLiteral("è¯·è¾“å…¥åŸºç«™ID"));
+    formlayout->addRow(QStringLiteral("&åŸºç«™IDï¼š"),idEdit);
     formlayout->setLabelAlignment(Qt::AlignRight);
     formlayout->setVerticalSpacing(40);
     formlayout->setHorizontalSpacing(10);
-
+    formlayout->setFormAlignment(Qt::AlignVCenter);
     widget_1=new QWidget();
     widget_1->setLayout(formlayout);
     widget_1->setObjectName("widget_1");
-    widget_1->setMinimumSize(500,290);
-
+    //widget_1->setMinimumSize(500,290);
     chk_btn=new QPushButton();
-    chk_btn->setText(QString::fromLocal8Bit("È· ¶¨"));
+    chk_btn->setText(QStringLiteral("ç¡® å®š"));
     chk_btn->setObjectName("chk_btn");
     can_btn=new QPushButton();
-    can_btn->setText(QString::fromLocal8Bit("È¡ Ïû"));
+    can_btn->setText(QStringLiteral("å– æ¶ˆ"));
     can_btn->setObjectName("can_btn");
 
     hor_layout=new QHBoxLayout();
@@ -68,7 +50,7 @@ addLabelForm::addLabelForm(QWidget *parent) :
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scrollArea->setFrameShape(QFrame::NoFrame);
 
-    title=new FormTitle(this,QString::fromLocal8Bit("±êÇ©ÐÅÏ¢"));
+    title=new FormTitle(this,QStringLiteral("åŸºç«™æŸ¥è¯¢"));
     title->setFixedHeight(40);
 
     gridlayout=new QGridLayout(this);
@@ -86,12 +68,12 @@ addLabelForm::addLabelForm(QWidget *parent) :
     connect(title,SIGNAL(showMin()),this,SLOT(showMinimized()));
     connect(title,SIGNAL(closeWidget()),this,SLOT(close()));
 
-/********************´°¿ÚËõ·Å***********************/
+/********************çª—å£ç¼©æ”¾***********************/
 
     this->setMouseTracking(true);
 
     isLeftPressed=false;
-    curPos=0;  //Êó±ê×ó»÷Ê±µÄÎ»ÖÃ
+    curPos=0;  //é¼ æ ‡å·¦å‡»æ—¶çš„ä½ç½®
     this->setMinimumSize(450,10);
     this->setFixedWidth(450);
     QCursor cursor;
@@ -100,24 +82,20 @@ addLabelForm::addLabelForm(QWidget *parent) :
 
 }
 
-void addLabelForm::combine(){
-    Label info;
-    info.setLableId(this->labelIdEdit->text().toInt());
-    info.setEmployeeId(this->employeeIdEdit->text().toInt());
-    info.setCharge(this->chargeEdit->text());
-    info.setState(this->stateEdit->text());
-    info.setRemark(this->remarkEdit->text());
-    emit newLabelInfo(info);
+void SelectBaseForm::combine(){
+    int id;
+    id = this->idEdit->text().toInt();
+    emit selectBaseId(id);
     this->close();
 }
 
-addLabelForm::~addLabelForm()
+SelectBaseForm::~SelectBaseForm()
 {
 }
 
-/********************´°¿ÚËõ·Å***********************/
+/********************çª—å£ç¼©æ”¾***********************/
 
-void addLabelForm::mousePressEvent(QMouseEvent *eve)
+void SelectBaseForm::mousePressEvent(QMouseEvent *eve)
 {
     if(eve->button()==Qt::LeftButton)
     {
@@ -129,7 +107,7 @@ void addLabelForm::mousePressEvent(QMouseEvent *eve)
     }
 }
 
-void addLabelForm::mouseReleaseEvent(QMouseEvent *eve)
+void SelectBaseForm::mouseReleaseEvent(QMouseEvent *eve)
 {
     if(isLeftPressed)
         isLeftPressed=false;
@@ -137,7 +115,7 @@ void addLabelForm::mouseReleaseEvent(QMouseEvent *eve)
     eve->ignore();
 }
 
-void addLabelForm::mouseMoveEvent(QMouseEvent *eve)
+void SelectBaseForm::mouseMoveEvent(QMouseEvent *eve)
 {
     int poss=countFlag(eve->pos(),countRow(eve->pos()));
     setCursorType(poss);
@@ -174,7 +152,7 @@ void addLabelForm::mouseMoveEvent(QMouseEvent *eve)
     eve->ignore();
 }
 
-int addLabelForm::countFlag(QPoint p, int row)
+int SelectBaseForm::countFlag(QPoint p, int row)
 {
     if(p.y()<MARGIN)
         return 10+row;
@@ -183,7 +161,7 @@ int addLabelForm::countFlag(QPoint p, int row)
     else
         return 20+row;
 }
-void addLabelForm::setCursorType(int flag)
+void SelectBaseForm::setCursorType(int flag)
 {
 
     if(curPos==32)
@@ -195,7 +173,8 @@ void addLabelForm::setCursorType(int flag)
         this->setCursor(Qt::ArrowCursor);
     }
 }
-int addLabelForm::countRow(QPoint p)
+int SelectBaseForm::countRow(QPoint p)
 {
     return (p.x()<MARGIN)?1:(p.x()>(this->width()-MARGIN))?3:2;
 }
+

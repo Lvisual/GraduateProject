@@ -219,5 +219,8 @@
         <file>images/zhifang_1.jpg</file>
         <file>images/end3.png</file>
         <file>images/start3.png</file>
+        <file>images/myicon.png</file>
+        <file>images/brush.png</file>
+        <file>images/bound.png</file>
     </qresource>
 </RCC>

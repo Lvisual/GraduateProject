@@ -78,7 +78,7 @@ LoMoWidget::LoMoWidget(QWidget *parent) :
     radio3->setText(QStringLiteral("场景2"));
     radio4 = new QRadioButton();
     radio4->setText(QStringLiteral("场景3"));
-
+    connect(radio2,SIGNAL(toggled(bool)),this,SLOT(loadScene1(bool)));
     tab1_g1->addWidget(radio1,0,0,1,1);
     tab1_g1->addWidget(radio2,0,1,1,1);
     tab1_g1->addWidget(radio3,1,0,1,1);
@@ -384,5 +384,83 @@ void LoMoWidget :: setbililabelvalue(double bili)
 {
     bilivalue->setText(QStringLiteral("50px=")+QString::number(bili)+QStringLiteral("米"));
 }
+
+void LoMoWidget::loadScene1(bool checked){
+    if(checked){
+           qDebug() << "fuck" <<endl;
+         openFileMap("C:/Users/Administrator/Desktop/map21A.txt");
+    }else{
+            if(scene1->items().size())
+             scene1->clear();
+        }
+}
+
+void LoMoWidget::openFileMap(QString s){
+    int st = 0;
+    int id;
+    float x1,y1,a,b,angle;
+    int r1, r2, g1, g2, a1, a2, b1, b2;
+    int width;
+    QFile file(s);
+    if (file.open(QFile::ReadOnly))
+    {
+        QTextStream cin(&file);
+        while(!cin.atEnd())
+        {
+          //  st = 0;       //st���Ա���ͼԪ������
+            cin >>st>>id;
+            GraphicsItem *item;
+            if (st == 0)
+                break;
+            if (st == 3)   //�������ߵĻ�
+            {
+                //float x2,y2;
+               // cin>>x1>>y1>>x2>>y2>>a>>b>>r1>>g1>>b1>>a1>>r2>>g2>>b2>>a2>>width;
+                cin>>x1>>y1>>a>>b>>angle>>r1>>g1>>b1>>a1>>r2>>g2>>b2>>a2>>width;
+                item = new GraphicsLineItem(0);
+                item->setX(x1);
+                item->setY(y1);
+                item->setPen(QPen(QColor(r1, g1, b1, a1),width));
+                item->setBrush( QColor(r2, g2, b2, a2));
+                item->setMyShape(QColor(r1, g1, b1, a1), QColor(r2, g2, b2, a2), width);
+                item->resizeTo(SizeHandleRect::LeftTop,QPointF(x1-a/2,y1-b/2));
+                item->resizeTo( SizeHandleRect::RightBottom,QPointF(x1+a/2,y1+b/2));
+                item->setRotation(angle);
+                scene1->addItem(item);
+                continue;
+            }
+            else
+                cin>>x1>>y1>>a>>b>>angle>>r1>>g1>>b1>>a1>>r2>>g2>>b2>>a2>>width;
+
+            switch(st)
+            {
+            case 1:
+                item=new GraphicsRectItem(QRect(0,0,0,0),NULL);
+                break;
+            case 2:
+
+                item =new GraphicsEllipseItem(QRect(0,0,0,0),NULL);
+                break;
+            case 4:
+                item= new GraphicsArcItem(0);
+                break;
+            case 5:
+                item=new GraphicsPieItem(0);
+                break;
+            }
+            item->setX(x1);
+            item->setY(y1);
+            item->setPen(QPen(QColor(r1, g1, b1, a1),width));
+            item->setBrush( QColor(r2, g2, b2, a2));
+            item->setMyShape(QColor(r1, g1, b1, a1), QColor(r2, g2, b2, a2), width);
+            item->resizeTo(SizeHandleRect::LeftTop,QPointF(x1-a/2,y1-b/2));
+            item->resizeTo( SizeHandleRect::RightBottom,QPointF(x1+a/2,y1+b/2));
+            item->setRotation(angle);
+            scene1->addItem(item);
+        }
+    }
+    file.close();
+}
+
 
 

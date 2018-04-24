@@ -13,7 +13,7 @@ main_widget::main_widget(QWidget *parent) :
     setPalette(palette);
     setAutoFillBackground(true);
 
-    setWindowIcon(QIcon(":/new/images/account.png"));
+    setWindowIcon(QIcon(":/new/images/myicon.png"));
     setWindowFlags(Qt::FramelessWindowHint);
     location = this->geometry();
 
@@ -38,7 +38,7 @@ main_widget::main_widget(QWidget *parent) :
     content_widget = new contentwidget();
     lomomainwidget= new LoMoMainWidget();
     jzwidget = new JzWidget();
-    qDebug() <<"hehe";
+    qDebug() <<"hehe11";
     bqwidget = new BqWidget();
     qDebug() <<"haha";
     kqwidget = new KqWidget();
@@ -116,16 +116,29 @@ main_widget::main_widget(QWidget *parent) :
 //    h11->addWidget(m_naviView);
 //    h11->addWidget(m_navBtn);
 
-    center_layout->addWidget(content_widget);
-    center_layout->addWidget(lomomainwidget);
-    center_layout->addWidget(jzwidget);
-    center_layout->addWidget(kqwidget);
-    center_layout->addWidget(bqwidget);
-    center_layout->addWidget(truebqwidget);
-    center_layout->addWidget(mapwidget);
-    center_layout->addWidget(elecwidget);
-    center_layout->addWidget(routemanage);
-    center_layout->addWidget(empwidget);
+
+
+//    center_layout->addWidget(content_widget);
+//    center_layout->addWidget(lomomainwidget);
+//    center_layout->addWidget(jzwidget);
+//    center_layout->addWidget(kqwidget);
+//    center_layout->addWidget(bqwidget);
+//    center_layout->addWidget(truebqwidget);
+//    center_layout->addWidget(mapwidget);
+//    center_layout->addWidget(elecwidget);
+//    center_layout->addWidget(routemanage);
+//    center_layout->addWidget(empwidget);
+
+    center_layout->addWidget(content_widget); //主页
+    center_layout->addWidget(lomomainwidget);// 定位监控
+    center_layout->addWidget(bqwidget);  //摄像头联动
+    center_layout->addWidget(routemanage);//路径规划
+    center_layout->addWidget(elecwidget); //电子围栏
+    center_layout->addWidget(mapwidget);  //地图管理
+    center_layout->addWidget(jzwidget); // 基站管理
+    center_layout->addWidget(truebqwidget);//标签管理
+    center_layout->addWidget(empwidget);//人员管理
+    center_layout->addWidget(kqwidget); //签到管理
 
 //    QHBoxLayout *h12 = new QHBoxLayout();
 //    h12->setSpacing(0);

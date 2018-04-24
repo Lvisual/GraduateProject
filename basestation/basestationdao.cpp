@@ -114,3 +114,38 @@ bool BaseStationDao::update(BaseInfo info){
         return false;
     }
 }
+
+
+QVector<BaseInfo> BaseStationDao::selectById(int id){
+    QVector<BaseInfo>v;
+    this->qry = new QSqlQuery(db);
+    qry->prepare(this->select_id_sql);
+    qry->addBindValue(id);
+    if(!qry->exec())
+    {
+       qDebug()<<qry->lastError();
+    }
+    else
+    {
+        while(qry->next())
+        {
+            BaseInfo info;
+            info.SetbaseID(qry->value(0).toString());
+            info.SetbaseMac(qry->value(1).toString());
+            info.SetbaseRemark(qry->value(2).toString());
+            info.SetbaseType(qry->value(3).toString());
+            info.SetbaseX(qry->value(4).toString());
+            info.SetbaseY(qry->value(5).toString());
+            info.SetbaseZ(qry->value(6).toString());
+            v.push_back(info);
+        }
+    }
+    return v;
+}
+
+
+
+
+
+
+

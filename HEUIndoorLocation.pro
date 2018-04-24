@@ -130,7 +130,8 @@ SOURCES += main.cpp\
     RouteManage/indoormanage.cpp \
     RouteManage/mapscene.cpp \
     RouteManage/indoorscene.cpp \
-    RouteManage/targetitem.cpp
+    RouteManage/targetitem.cpp \
+    basestation/selectbaseform.cpp
 
 HEADERS  += mainwindow.h \
     titlewidget.h \
@@ -237,7 +238,8 @@ HEADERS  += mainwindow.h \
     RouteManage/indoormanage.h \
     RouteManage/mapscene.h \
     RouteManage/indoorscene.h \
-    RouteManage/targetitem.h
+    RouteManage/targetitem.h \
+    basestation/selectbaseform.h
 
 FORMS    += mainwindow.ui \
     titlewidget.ui \

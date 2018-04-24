@@ -139,14 +139,14 @@ void GraphicsItem::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 QVariant GraphicsItem::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
 {
     if ( change == QGraphicsItem::ItemSelectedHasChanged ) {
-        qDebug()<<" Item Selected : " << value.toString();
+        //qDebug()<<" Item Selected : " << value.toString();
         setState(value.toBool() ? SelectionHandleActive : SelectionHandleOff);
     }else if ( change == QGraphicsItem::ItemRotationHasChanged ){
-        qDebug()<<"Item Rotation Changed:" << value.toString();
+      //  qDebug()<<"Item Rotation Changed:" << value.toString();
     }else if ( change == QGraphicsItem::ItemTransformOriginPointHasChanged ){
         QPointF newPos=boundingRect().center();
 
-        qDebug()<<"ItemTransformOriginPointHasChanged:" << value.toPointF() << newPos;
+      //  qDebug()<<"ItemTransformOriginPointHasChanged:" << value.toPointF() << newPos;
     }
     return QGraphicsItem::itemChange(change, value);
 }
@@ -256,7 +256,7 @@ void GraphicsRectItem::changeSize()
 
     setTransformOriginPoint(boundingRect().center());
 
-    qDebug()<<"changeOrigin: "<< delta << mapFromScene( pos()) << mapFromScene(pt2)<<m_localRect;
+    //qDebug()<<"changeOrigin: "<< delta << mapFromScene( pos()) << mapFromScene(pt2)<<m_localRect;
 
     updateGeometry();
 
@@ -369,7 +369,7 @@ GraphicsItemGroup::GraphicsItemGroup(QGraphicsItemGroup *group, QGraphicsItem *p
 
         m_group->setTransformOriginPoint(bound.center());
 
-        qDebug()<<"pos :" << delta;
+       // qDebug()<<"pos :" << delta;
         updateGeometry();
     }
 }

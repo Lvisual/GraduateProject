@@ -48,16 +48,16 @@ TrueBqWidget::TrueBqWidget(QWidget *parent) :
     h11->setSpacing(0);
     h11->setContentsMargins(0,0,0,0);
 
-    QHBoxLayout *h12 =new QHBoxLayout;
-    h12->setSpacing(0);
-    h12->addWidget(m_naviView);
-    h12->addWidget(m_navBtn);
+   // QHBoxLayout *h12 =new QHBoxLayout;
+   // h12->setSpacing(0);
+  //  h12->addWidget(m_naviView);
+   // h12->addWidget(m_navBtn);
 
     QHBoxLayout *h13 = new QHBoxLayout;
     h13->setSpacing(0);
     h13->addWidget(m_stackedwidget);
 
-    h11->addLayout(h12,1);
+   // h11->addLayout(h12,1);
     h11->addLayout(h13,5);
     ver1->addLayout(h11);
 

@@ -15,6 +15,7 @@
 #include "DaoHang/dhpushbutton.h"
 #include <QStackedWidget>
 #include "basetypewidget.h"
+#include "selectbaseform.h"
 namespace Ui {
 class JzWidget;
 }
@@ -36,12 +37,13 @@ public slots:
     void addBaseItem(BaseInfo &info);
     void switchPage();
     void setNav();
-
-
+    void selectBaseWin();
+    void selectBaseItem(int id);
 private:
     QPushButton *addBase;
     QPushButton *deleteBase;
     QPushButton *freshBase;
+    QPushButton *selectBase;
     BaseModel   *baseModel;
     QTableView  *baseTable;
     QPushButton *nextPage;
@@ -50,6 +52,7 @@ private:
     QPushButton *lastPage;   
     BaseStationDao *baseStationdao;
     BaseStationForm *addWin;
+    SelectBaseForm *selectWin;
 
     QStackedWidget *stack;
     NaviView * m_naviView;

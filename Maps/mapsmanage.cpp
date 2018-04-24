@@ -13,6 +13,8 @@ MapsManage::MapsManage(QWidget *parent) :
 
     setupModel();
 
+    m_view = new ElecFencingView;
+    m_scene = new DrawScene;
     QVBoxLayout *ver1=new QVBoxLayout;
     setLayout(ver1);
     ver1->setContentsMargins(10,10,10,10);
@@ -23,23 +25,23 @@ MapsManage::MapsManage(QWidget *parent) :
 
     QHBoxLayout *hl3=new QHBoxLayout();
     widget1->setLayout(hl3);
-
-
-
     checkmap=new QPushButton();
-    checkmap->setText(QStringLiteral("查看地图"));
+    checkmap->setText(QStringLiteral("地图预览"));
     createmap=new QPushButton();
     createmap->setText(QStringLiteral("创建地图"));
-    deletemap=new QPushButton();
-    deletemap->setText(QStringLiteral("删除地图"));
+    freshmap=new QPushButton();
+    freshmap->setText(QStringLiteral("刷新"));
     connect(createmap,SIGNAL(clicked()),this,SLOT(drawmap_show()));
-
+    connect(checkmap,SIGNAL(clicked()),this,SLOT(showMap()));
+    connect(freshmap,SIGNAL(clicked()),this,SLOT(clearMap()));
 
     hl3->setAlignment(Qt::AlignLeft);
     hl3->addWidget(createmap);
     hl3->addWidget(checkmap);
-    hl3->addWidget(deletemap);
+    hl3->addWidget(freshmap);
     widget1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+
+
 
     QTableView *tableview1=new QTableView;
     tableview1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
@@ -72,9 +74,11 @@ MapsManage::MapsManage(QWidget *parent) :
 
     widget2->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 
+
+    m_view->setScene(m_scene);
     ver1->addWidget(widget1,1);
-    ver1->addWidget(tableview1,8);
-    ver1->addWidget(widget2,1);
+    ver1->addWidget(m_view,8);
+    //ver1->addWidget(widget2,1);
 
 }
 
@@ -131,4 +135,15 @@ void MapsManage::setupModel()
         file.close();
     }
 }
+
+void MapsManage::showMap(){
+    m_scene->clear();
+    m_scene->open_file();
+}
+
+void MapsManage::clearMap(){
+    m_scene->clear();
+}
+
+
 

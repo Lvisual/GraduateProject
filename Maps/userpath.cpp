@@ -71,7 +71,7 @@ userPath::userPath(QWidget *parent) :
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scrollArea->setFrameShape(QFrame::NoFrame);
 
-    title=new FormTitle(this,QStringLiteral("起始点信息"));
+    title=new FormTitle(this,QStringLiteral("起始房间号"));
     title->setFixedHeight(40);
 
     gridlayout=new QGridLayout(this);

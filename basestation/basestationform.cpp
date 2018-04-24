@@ -31,7 +31,6 @@ BaseStationForm::BaseStationForm(QWidget *parent) :
     remarkEdit=new QLineEdit();
     m_boxLabel = new QLabel();
     m_boxLabel->setText(QStringLiteral("基站类型 : "));
-
     idEdit->setPlaceholderText(QStringLiteral("请输入基站ID"));
     macEdit->setPlaceholderText(QStringLiteral("请输入基站物理地址"));
     setBox();
@@ -48,7 +47,7 @@ BaseStationForm::BaseStationForm(QWidget *parent) :
     hlayout->setSpacing(12);
     hlayout->setContentsMargins(10,40,0,40);
     hlayout->setAlignment(Qt::AlignLeft);
-    formlayout1->addRow(QStringLiteral("&基站ID： "),idEdit);
+  //  formlayout1->addRow(QStringLiteral("&基站ID： "),idEdit);
     formlayout1->addRow(QStringLiteral("&基站MAC： "),macEdit);
     //formlayout2->addRow(QStringLiteral("&基站类型："),cateEdit);
 

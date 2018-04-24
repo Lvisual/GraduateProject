@@ -48,6 +48,7 @@ class LoMoWidget : public QWidget
 public:
     explicit LoMoWidget(QWidget *parent = 0);
     ~LoMoWidget();
+     void openFileMap(QString s);
 
 //    void wheelEvent(QWheelEvent*event);
 //protected:
@@ -60,7 +61,7 @@ public slots:
     void jiazai();
     void showHistoryWin();
     void showHistoryRoute(HistoryInfo);
-
+    void loadScene1(bool);
 signals:
    // void stateChange();
 private:

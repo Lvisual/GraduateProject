@@ -46,4 +46,7 @@ bool Judge::getresult(vector<CPoint*>tg,QPointF p){
         bool result = this->PtInPolygon(p);
         return result;
  }
+
+
+
 Judge::~Judge(){}

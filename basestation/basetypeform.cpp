@@ -16,10 +16,10 @@ baseTypeForm::baseTypeForm(QWidget *parent) :
     idEdit=new QLineEdit();
     typenameEdit=new QLineEdit();
     remarkEdit=new QLineEdit();
-    idEdit->setPlaceholderText(QStringLiteral("请输入基站类型ID"));
+   // idEdit->setPlaceholderText(QStringLiteral("请输入基站类型ID"));
     typenameEdit->setPlaceholderText(QStringLiteral("请输入基站类型名称"));
     remarkEdit->setPlaceholderText(QStringLiteral("备注"));
-    formlayout->addRow(QStringLiteral("&基站类型ID："),idEdit);
+   // formlayout->addRow(QStringLiteral("&基站类型ID："),idEdit);
     formlayout->addRow(QStringLiteral("&基站类型名称: "),typenameEdit);
     formlayout->addRow(QStringLiteral("&备注："),remarkEdit);
 

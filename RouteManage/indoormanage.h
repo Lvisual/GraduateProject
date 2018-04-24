@@ -25,7 +25,7 @@ public slots:
 
     void loadIndoorMap();//加载地图
     void findPath(); //路径寻址
-  //  void fresh();
+    void fresh();  //清除路径
     //void drawPath(userPoint &data);
     //void addWin();
     //void setMap();

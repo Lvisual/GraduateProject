@@ -25,7 +25,7 @@ public:
     GraphicsItem(QGraphicsItem * parent );
     enum {Type = UserType+1};
     int  type() const { return Type; }
-    SizeHandleRect::Direction  hitTest( const QPointF & point ) const;
+    SizeHandleRect::Direction   hitTest( const QPointF & point ) const;
     virtual void resizeTo(SizeHandleRect::Direction dir, const QPointF & point );
     virtual QPointF origin () const { return QPointF(0,0); }
     virtual Qt::CursorShape getCursor(SizeHandleRect::Direction dir );

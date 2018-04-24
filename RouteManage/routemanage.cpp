@@ -26,22 +26,22 @@ RouteManage::RouteManage(QWidget *parent) :
     hor1->setSpacing(10);
     hor1->setContentsMargins(0,0,0,10);
 
-    m_indoorMap = new QToolButton;
-    m_indoorMap->setText(QStringLiteral("室内寻址"));
+    //m_indoorMap = new QToolButton;
+   // m_indoorMap->setText(QStringLiteral("室内寻址"));
     jiazaiditu =new QToolButton;
     jiazaiditu->setText(QStringLiteral("加载地图"));
     jiazailujing =new QToolButton;
     jiazailujing->setText(QStringLiteral("路径寻址"));
     m_fresh = new QToolButton;
     m_fresh->setText(QStringLiteral("刷新"));
-    hor1->addWidget(m_indoorMap);
+    //hor1->addWidget(m_indoorMap);
     hor1->addWidget(jiazaiditu);
     hor1->addWidget(jiazailujing);
     hor1->addWidget(m_fresh);
     connect(jiazaiditu,SIGNAL(clicked()) , this, SLOT(jiazai()));
     connect(jiazailujing,SIGNAL(clicked()) , this, SLOT(addWin()));
     connect(m_fresh,SIGNAL(clicked()),this,SLOT(fresh()));
-    connect(m_indoorMap,SIGNAL(clicked()),this,SLOT(showIndoor()));
+  //  connect(m_indoorMap,SIGNAL(clicked()),this,SLOT(showIndoor()));
     QHBoxLayout *h2=new QHBoxLayout();
     h2->setSpacing(10);
     view1 =new ElecFencingView();

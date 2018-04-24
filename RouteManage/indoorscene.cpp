@@ -4,6 +4,7 @@
 #include "bwfile.h"
 #include "Maps/route.h"
 #include <list>
+#include "ElecFencing/position.h"
 using namespace  std;
 IndoorScene::IndoorScene(QObject *parent):QGraphicsScene(parent){
 startItem = new TargetItem(0);
@@ -99,17 +100,20 @@ void IndoorScene :: openFile()
    if(clickItem==nullptr){
    CPoint temp(pos.x(),pos.y());
    if(m_startendVec.size()==0){
+       qDebug()<<"size = 0" <<endl;
        startItem->setPos(pos);
        this->addItem(startItem);
        m_startendVec.push_back(temp);
    }else{
        if(m_startendVec.size()==1){
+           qDebug()<<"size = 1" << endl;
            endItem->setPos(pos);
            this->addItem(endItem);
            m_startendVec.push_back(temp);
        }
    }
    if(m_startendVec.size()==2){
+       qDebug() <<"size 2" <<endl;
        drawPath();
        m_startendVec.clear();
    }
@@ -131,6 +135,7 @@ void IndoorScene :: openFile()
           float y = list.at(1).toFloat();
           int flag = list.at(2).toInt();
           m_astar.cbowyer.AddNewPoint(CPoint(x,y),flag);
+          m_obstacleVec.push_back(QPoint(x,y));
     }
       m_astar.cbowyer.UpdateNewPoint();
       m_astar.cbowyer.DelCommoooonline();
@@ -143,13 +148,15 @@ void IndoorScene :: openFile()
       list<CPoint*> path = m_astar.GetPath(start,end);
       QVector<QPoint> pathVec;
       list<CPoint*>::iterator it = path.begin();
-     while(it!=path.end()){
-          qDebug()<<"hehe" << QPoint((*it)->x,(*it)->y)<<endl;
+      while(it!=path.end()){
           pathVec.push_back(QPoint((*it)->x,(*it)->y));
           it++;
       }
-      Route *planRoute = new Route(pathVec);
-      this->addItem(planRoute);
+      reverse(pathVec.begin(),pathVec.begin());
+      QVector<QPoint> res = smooth(pathVec);
+     // qDebug() << "res.size" << res.size() << endl;
+      m_route= new Route(res);
+      this->addItem(m_route);
   }
   void IndoorScene::initScene(){
      QVector< QVector<QPointF> > obstacle = m_astar.cbowyer.m_obstacle;
@@ -164,6 +171,61 @@ void IndoorScene :: openFile()
          poly->setZValue(70);
          this->addItem(poly);
   }
+}
+
+  void IndoorScene::clearRoute(){
+      if(startItem!=nullptr){
+          this->removeItem(startItem);
+      }
+      if(endItem!=nullptr){
+          this->removeItem(endItem);
+      }
+      if(m_route!=nullptr){
+          this->removeItem(m_route);
+      }
+  }
+
+ //对路径进行平滑处理
+QVector<QPoint> IndoorScene::smooth(QVector<QPoint> vec){
+    QVector<QPoint> res;
+    QVector<QPoint> polyVec;
+    if(vec.size()<=2){
+       return vec;
+   }
+    int begin = 0;
+    int i = 0;
+    while(begin < vec.size()){
+        polyVec.clear();
+        res.push_back(vec[begin]);
+        if(begin==vec.size()-1)
+            return res;
+        i = begin + 1;
+        while((i+1)<vec.size()){
+          polyVec.push_back(vec[begin]);
+          polyVec.push_back(vec[i]);
+          polyVec.push_back(vec[i+1]);
+          Position p(polyVec,polyVec.size());
+          int flag = 0;
+          for(int k = 0;k < m_obstacleVec.size();k++){
+             if(p.PtInPolygon(m_obstacleVec[k])){
+                  flag = 1;
+                  break;
+             }
+          }
+          if(flag==1){
+           begin = i;
+           break;
+          }
+          else{
+           i = i+1;
+           polyVec.clear();
+          }
+       }
+        if(i==vec.size()-1){
+           begin = i;
+        }
+    }
+    return res;
 }
 
 
