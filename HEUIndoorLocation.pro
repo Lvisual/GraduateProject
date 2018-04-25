@@ -7,7 +7,7 @@
 QT       += core gui sql
 QT       += core gui xml
 QT += opengl
-
+QT += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = HEUIndoorLocation
@@ -131,7 +131,8 @@ SOURCES += main.cpp\
     RouteManage/mapscene.cpp \
     RouteManage/indoorscene.cpp \
     RouteManage/targetitem.cpp \
-    basestation/selectbaseform.cpp
+    basestation/selectbaseform.cpp \
+    LocateMonitor/locatedatawin.cpp
 
 HEADERS  += mainwindow.h \
     titlewidget.h \
@@ -239,7 +240,8 @@ HEADERS  += mainwindow.h \
     RouteManage/mapscene.h \
     RouteManage/indoorscene.h \
     RouteManage/targetitem.h \
-    basestation/selectbaseform.h
+    basestation/selectbaseform.h \
+    LocateMonitor/locatedatawin.h
 
 FORMS    += mainwindow.ui \
     titlewidget.ui \

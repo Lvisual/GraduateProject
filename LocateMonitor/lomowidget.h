@@ -35,8 +35,8 @@
 #include "DaoHang/naviview.h"
 #include "DaoHang/navmodel.h"
 #include "DaoHang/dhpushbutton.h"
-
-
+#include "locatedatawin.h"
+#include "Maps/moveitem.h"
 namespace Ui {
 class LoMoWidget;
 }
@@ -58,7 +58,8 @@ public slots:
     void setxlabelvalue(double);
     void setylabelvalue(double);
     void setbililabelvalue(double);
-    void jiazai();
+    void beginLocate();
+    void stopLocate();
     void showHistoryWin();
     void showHistoryRoute(HistoryInfo);
     void loadScene1(bool);
@@ -121,10 +122,11 @@ private:
     DrawScene *scene1;
 
     QStandardItemModel *model;
-
+    LocateDataWin *m_locateWin;
+    MoveItem *m_moveItem;
 private slots:
     void supersetvisble();
-
+    void locatedata(QString,QPointF);
 };
 
 #endif // LOMOWIDGET_H

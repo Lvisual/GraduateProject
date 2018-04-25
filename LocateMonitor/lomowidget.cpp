@@ -26,8 +26,8 @@ LoMoWidget::LoMoWidget(QWidget *parent) :
    // QHBoxLayout *h1 =new QHBoxLayout();
   //  v1->addLayout(h1);
   //  h1->setAlignment(Qt::AlignLeft);
-
-
+   m_moveItem = new MoveItem;
+   m_moveItem->setPos(0,0);
 
 //    h1->addWidget(locatelabel);
 //    h1->addWidget(Xlabel);
@@ -220,7 +220,7 @@ LoMoWidget::LoMoWidget(QWidget *parent) :
 
     scene1 = new DrawScene();
     view =new ElecFencingView();
-
+    scene1->addItem(m_moveItem);
     view->setScene(scene1);
     //scene1->drawGridBackground(50);
     scene1->setSceneRect(-view->rect().width()/2,-view->rect().height()/2,view->rect().width(),view->rect().height());
@@ -245,16 +245,16 @@ LoMoWidget::LoMoWidget(QWidget *parent) :
 //    toolbutton2->setText(QStringLiteral("停止定位"));
 //    toolbutton2->setAutoRaise(true);
 //    toolbutton2->setStyleSheet("width:90px;");
-    toolbutton3->setText(QStringLiteral("定位接口配置"));
+    toolbutton3->setText(QStringLiteral("开始定位"));
 
-    connect(toolbutton3,SIGNAL(clicked()) , this, SLOT(jiazai()));
+    connect(toolbutton3,SIGNAL(clicked()) , this, SLOT(beginLocate()));
     toolbutton3->setAutoRaise(true);
     toolbutton3->setStyleSheet("width:90px;");
-    toolbutton4->setText(QStringLiteral("数据转发配置"));
+    toolbutton4->setText(QStringLiteral("停止定位"));
     toolbutton4->setAutoRaise(true);
     toolbutton4->setStyleSheet("width:90px;");
-
-
+    toolbutton4->setEnabled(false);
+    connect(toolbutton4,SIGNAL(clicked()) , this, SLOT(stopLocate()));
     locatelabel = new QLabel();
     Xlabel = new QLabel();
     Ylabel = new QLabel();
@@ -269,9 +269,6 @@ LoMoWidget::LoMoWidget(QWidget *parent) :
   //  connect(view,SIGNAL(clicked()),this,SLOT(supersetvisble()));
     connect(view , SIGNAL(xlabel(double)) , this, SLOT(setxlabelvalue(double)));
     connect(view , SIGNAL(ylabel(double)) , this, SLOT(setylabelvalue(double)));
-
-
-
     bilichi1 =new QLabel();
     bilichi1->setText(QStringLiteral("比例尺:"));
     bilichi1->setStyleSheet("font-size: 13px;");
@@ -307,10 +304,10 @@ LoMoWidget::LoMoWidget(QWidget *parent) :
     vn2->addWidget(bilichi1);
     vn2->addLayout(hnn1);
 
-    vn->addWidget(toolbutton1);
-   // vn->addWidget(toolbutton2);
     vn->addWidget(toolbutton3);
+   // vn->addWidget(toolbutton2);
     vn->addWidget(toolbutton4);
+    vn->addWidget(toolbutton1);
     vn->addLayout(vn2);
     h2->addLayout(vn,1);
 
@@ -321,13 +318,13 @@ LoMoWidget::~LoMoWidget()
     delete ui;
 }
 
-void LoMoWidget::jiazai()
+void LoMoWidget::beginLocate()
 {
-    if(!scene1->item_container.isEmpty())
-    {
-        scene1->clear();
-    }
-    scene1->open_file();
+    qDebug() <<"begin locate";
+    m_locateWin = new LocateDataWin;
+    connect(m_locateWin,SIGNAL(sendMapData(QString,QPointF)),this,SLOT(locatedata(QString,QPointF)));
+    toolbutton3->setEnabled(false);
+    toolbutton4->setEnabled(true);
 }
 
 void LoMoWidget::showHistoryWin(){
@@ -460,6 +457,20 @@ void LoMoWidget::openFileMap(QString s){
         }
     }
     file.close();
+}
+
+void LoMoWidget::locatedata(QString labelId, QPointF pos){
+    m_moveItem->moveBy(pos.x()-m_moveItem->x(),pos.y()-m_moveItem->y());
+
+}
+
+void LoMoWidget::stopLocate(){
+    toolbutton3->setEnabled(true);
+    toolbutton4->setEnabled(false);
+    m_locateWin->closeSocket();
+    if(m_locateWin!=nullptr)
+    delete m_locateWin;
+
 }
 
 
