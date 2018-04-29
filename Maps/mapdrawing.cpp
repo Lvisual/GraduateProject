@@ -37,6 +37,7 @@ MapDrawing::MapDrawing(QWidget *parent) :
     view->setScene(m_scene);
    // m_scene->setSceneRect(-1320/2,-580/2,1320,580);
     m_scene->setSceneRect(-view->rect().width()/2,-view->rect().height()/2,view->rect().width(),view->rect().height());
+   // m_scene->setSceneRect(0,0,view->rect().width(),view->rect().height());
     //创建新图元实验用，用以保存和
     //  QGraphicsRectItem  *rect=m_scene->addRect(QRectF(0,0,100,100));
     //  rect->setBrush(QBrush(Qt::Dense4Pattern));

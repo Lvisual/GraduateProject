@@ -3,12 +3,16 @@
 #include "style.h"
 #include "ElecFencing/myxml.h"
 #include "RouteManage/indoormanage.h"
+#include "LocateMonitor/testview.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Style::setStyle(":/new/style.qss");
    main_widget main;
    main.show();
+    //TestView tw;
+   // tw.show();
+
   return a.exec();
 }
 

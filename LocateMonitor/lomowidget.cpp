@@ -27,7 +27,11 @@ LoMoWidget::LoMoWidget(QWidget *parent) :
   //  v1->addLayout(h1);
   //  h1->setAlignment(Qt::AlignLeft);
    m_moveItem = new MoveItem;
-   m_moveItem->setPos(0,0);
+   m_animation =new QGraphicsItemAnimation;
+   m_timer = new QTimeLine;
+   m_animation->setTimeLine(m_timer);
+   m_animation->setItem(m_moveItem);
+   //m_moveItem->setPos(0,0);
 
 //    h1->addWidget(locatelabel);
 //    h1->addWidget(Xlabel);
@@ -223,7 +227,8 @@ LoMoWidget::LoMoWidget(QWidget *parent) :
     scene1->addItem(m_moveItem);
     view->setScene(scene1);
     //scene1->drawGridBackground(50);
-    scene1->setSceneRect(-view->rect().width()/2,-view->rect().height()/2,view->rect().width(),view->rect().height());
+    //scene1->setSceneRect(-view->rect().width()/2,-view->rect().height()/2,view->rect().width(),view->rect().height());
+    scene1->setSceneRect(0,-700,view->rect().width(),view->rect().height());
     h2->addWidget(view,5);
     view->show();
     view->setSizePolicy(QSizePolicy::Expanding , QSizePolicy :: Expanding);
@@ -320,11 +325,13 @@ LoMoWidget::~LoMoWidget()
 
 void LoMoWidget::beginLocate()
 {
+    m_timer->start();
     qDebug() <<"begin locate";
     m_locateWin = new LocateDataWin;
     connect(m_locateWin,SIGNAL(sendMapData(QString,QPointF)),this,SLOT(locatedata(QString,QPointF)));
     toolbutton3->setEnabled(false);
     toolbutton4->setEnabled(true);
+
 }
 
 void LoMoWidget::showHistoryWin(){
@@ -385,7 +392,7 @@ void LoMoWidget :: setbililabelvalue(double bili)
 void LoMoWidget::loadScene1(bool checked){
     if(checked){
            qDebug() << "fuck" <<endl;
-         openFileMap("C:/Users/Administrator/Desktop/map21A.txt");
+         openFileMap("C:/Users/Administrator/Desktop/236Indoor.txt");
     }else{
             if(scene1->items().size())
              scene1->clear();
@@ -460,8 +467,21 @@ void LoMoWidget::openFileMap(QString s){
 }
 
 void LoMoWidget::locatedata(QString labelId, QPointF pos){
-    m_moveItem->moveBy(pos.x()-m_moveItem->x(),pos.y()-m_moveItem->y());
-
+    if(m_route!=nullptr)
+        delete m_route;
+    MoveItem * newitem  = new MoveItem;
+    float x = (pos.x()-1)*100;
+    float y = -(pos.y()-42)*100;
+    QPointF newPoint(x,y);
+    newitem->setPos(newPoint);
+    scene1->addItem(newitem);
+   // m_pathVec.append(newPoint);
+   // m_route = new Route(m_pathVec);
+    qDebug() << pos << endl;
+    //m_moveItem->moveBy(pos.x()-m_moveItem->x(),pos.y()-m_moveItem->y());
+   // m_moveItem->setPos(pos);
+   // m_animation->setPosAt(0.5,pos);
+    //scene1->addItem(m_route);
 }
 
 void LoMoWidget::stopLocate(){

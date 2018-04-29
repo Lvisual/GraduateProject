@@ -37,6 +37,8 @@
 #include "DaoHang/dhpushbutton.h"
 #include "locatedatawin.h"
 #include "Maps/moveitem.h"
+#include <QGraphicsItemAnimation>
+#include <QTimeLine>
 namespace Ui {
 class LoMoWidget;
 }
@@ -120,10 +122,14 @@ private:
     QToolButton *playend;
 
     DrawScene *scene1;
-
     QStandardItemModel *model;
     LocateDataWin *m_locateWin;
+
     MoveItem *m_moveItem;
+    QGraphicsItemAnimation *m_animation;
+    QTimeLine *m_timer;
+    QVector<QPoint> m_pathVec;
+    Route *m_route;
 private slots:
     void supersetvisble();
     void locatedata(QString,QPointF);

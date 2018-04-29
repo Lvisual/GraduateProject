@@ -132,7 +132,9 @@ SOURCES += main.cpp\
     RouteManage/indoorscene.cpp \
     RouteManage/targetitem.cpp \
     basestation/selectbaseform.cpp \
-    LocateMonitor/locatedatawin.cpp
+    LocateMonitor/locatedatawin.cpp \
+    Maps/mymapview.cpp \
+    LocateMonitor/testview.cpp
 
 HEADERS  += mainwindow.h \
     titlewidget.h \
@@ -241,7 +243,9 @@ HEADERS  += mainwindow.h \
     RouteManage/indoorscene.h \
     RouteManage/targetitem.h \
     basestation/selectbaseform.h \
-    LocateMonitor/locatedatawin.h
+    LocateMonitor/locatedatawin.h \
+    Maps/mymapview.h \
+    LocateMonitor/testview.h
 
 FORMS    += mainwindow.ui \
     titlewidget.ui \

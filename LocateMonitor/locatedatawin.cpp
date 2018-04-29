@@ -22,7 +22,7 @@ void LocateDataWin::getData(){
     QByteArray posdata = m_socket->readAll();
     QString tempStr = QString(posdata);
     QStringList strList = tempStr.split(',');
-    QPointF pos(strList.at(4).toFloat(),strList.at(5).toFloat());
+    QPointF pos(strList.at(3).toFloat(),strList.at(4).toFloat());
     emit(sendMapData(strList.at(1),pos));
     m_file.write(posdata);
 }
