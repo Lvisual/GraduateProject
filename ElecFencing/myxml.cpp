@@ -21,7 +21,7 @@ QVector<QPoint> MyXml::readXml(QString time,QString filename){
     QDomElement docElem = doc.documentElement();
     QDomNode n = docElem.firstChild();
     while (!n.isNull())
-    {   
+    {
         QDomElement e = n.toElement();
         if (e.tagName()==time)
         {

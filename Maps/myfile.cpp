@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QMessageBox>
 #include <QDebug>
+#include <QDateTime>
 MyFile::MyFile()
 {
 m_row = 0;
@@ -45,6 +46,27 @@ void MyFile::writeFile(QString fileName){
 
  int MyFile::getRow(){
      return m_row;
+ }
+ QVector<QPointF> MyFile::getHistoryPoint(QString filename, QString labelName, QDateTime startTime, QDateTime endTime){
+     QVector<QPointF> res;
+     QFile file(filename);
+     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+     {
+        qDebug() << "open failed";
+     }
+      QTextStream in(&file);//读取一行//如果读取多行
+      while (!in.atEnd()) {
+        QString str= in.readLine();
+        QStringList mylist =str.split(',');
+        QString timeStr = mylist.at(2);
+        QDateTime time = QDateTime::fromString(timeStr,"yyyy-MM-dd hh:mm:ss.zzz");
+        if((mylist.at(1)==labelName)&&(time>=startTime)&&(time<=endTime)){
+        float x = (mylist.at(3).toFloat()-1)*100;
+        float y = -(mylist.at(4).toFloat()-42)*100;
+        res.push_back(QPointF(x,y));
+        }
+      }
+     return res;
  }
 
 

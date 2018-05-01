@@ -414,15 +414,15 @@ void ElecFenceWidget::monitor2(QPointF data){
 void ElecFenceWidget::showHistoryRoute(HistoryInfo info){
     //qDebug()<<info.id << " " <<info.time;
 
-    if(info.id==0){
-   m_access1 = m_xml1.readXml(info.time,"MapHistoryData1.xml");
+    if(info.lableName==""){
+   m_access1 = m_xml1.readXml("test","MapHistoryData1.xml");
    m_historyRoute = new Route(m_access1);
    scene1->addItem(m_historyRoute);
    m_access1.clear();
     }
 
-    if(info.id==1){
-    m_access2 = m_xml2.readXml(info.time,"MapHistoryData2.xml");
+    if(info.lableName==""){
+    m_access2 = m_xml2.readXml("test","MapHistoryData2.xml");
     m_historyRoute = new Route(m_access2);
     scene1->addItem(m_historyRoute);
     m_access2.clear();

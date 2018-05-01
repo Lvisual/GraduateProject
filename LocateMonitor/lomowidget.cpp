@@ -239,7 +239,7 @@ LoMoWidget::LoMoWidget(QWidget *parent) :
     vn->setContentsMargins(10,20,10,20);
 
     toolbutton1=new QToolButton();
-    //toolbutton2=new QToolButton();
+    toolbutton2=new QToolButton();
     toolbutton3=new QToolButton();
     toolbutton4=new QToolButton();
 
@@ -247,11 +247,11 @@ LoMoWidget::LoMoWidget(QWidget *parent) :
     toolbutton1->setAutoRaise(true);
     toolbutton1->setStyleSheet("width:90px;");
     connect(toolbutton1,SIGNAL(clicked()) , this, SLOT(showHistoryWin()));
-//    toolbutton2->setText(QStringLiteral("停止定位"));
-//    toolbutton2->setAutoRaise(true);
-//    toolbutton2->setStyleSheet("width:90px;");
+    toolbutton2->setText(QStringLiteral("刷新"));
+    toolbutton2->setAutoRaise(true);
+    toolbutton2->setStyleSheet("width:90px;");
     toolbutton3->setText(QStringLiteral("开始定位"));
-
+    connect(toolbutton2,SIGNAL(clicked()) , this, SLOT(freshMap()));
     connect(toolbutton3,SIGNAL(clicked()) , this, SLOT(beginLocate()));
     toolbutton3->setAutoRaise(true);
     toolbutton3->setStyleSheet("width:90px;");
@@ -310,9 +310,9 @@ LoMoWidget::LoMoWidget(QWidget *parent) :
     vn2->addLayout(hnn1);
 
     vn->addWidget(toolbutton3);
-   // vn->addWidget(toolbutton2);
     vn->addWidget(toolbutton4);
     vn->addWidget(toolbutton1);
+    vn->addWidget(toolbutton2);
     vn->addLayout(vn2);
     h2->addLayout(vn,1);
 
@@ -325,13 +325,13 @@ LoMoWidget::~LoMoWidget()
 
 void LoMoWidget::beginLocate()
 {
-    m_timer->start();
+    //m_timer->start();
     qDebug() <<"begin locate";
     m_locateWin = new LocateDataWin;
     connect(m_locateWin,SIGNAL(sendMapData(QString,QPointF)),this,SLOT(locatedata(QString,QPointF)));
+    m_thread.start();
     toolbutton3->setEnabled(false);
     toolbutton4->setEnabled(true);
-
 }
 
 void LoMoWidget::showHistoryWin(){
@@ -341,20 +341,12 @@ void LoMoWidget::showHistoryWin(){
 }
 
 void LoMoWidget::showHistoryRoute(HistoryInfo info){
-    //qDebug()<<info.id << " " <<info.time;
-    if(info.id==0){
-   m_access1 = m_xml1.readXml(info.time,"MapHistoryData1.xml");
-   Route *route = new Route(m_access1);
-   scene1->addItem(route);
-   m_access1.clear();
-    }
-
-    if(info.id==1){
-    m_access2 = m_xml2.readXml(info.time,"MapHistoryData2.xml");
-    Route *route = new Route(m_access2);
+    MyFile myfile;
+    QVector<QPointF> res = myfile.getHistoryPoint("manPos.txt",info.lableName,info.startTime,info.endTime);
+    HistoryRoute *route = new HistoryRoute(res);
+    scene1->clear();
     scene1->addItem(route);
-    m_access2.clear();
-}
+    qDebug() << "I hava receive the data" << endl;
 }
 
 void LoMoWidget::supersetvisble()
@@ -475,23 +467,20 @@ void LoMoWidget::locatedata(QString labelId, QPointF pos){
     QPointF newPoint(x,y);
     newitem->setPos(newPoint);
     scene1->addItem(newitem);
-   // m_pathVec.append(newPoint);
-   // m_route = new Route(m_pathVec);
-    qDebug() << pos << endl;
-    //m_moveItem->moveBy(pos.x()-m_moveItem->x(),pos.y()-m_moveItem->y());
-   // m_moveItem->setPos(pos);
-   // m_animation->setPosAt(0.5,pos);
-    //scene1->addItem(m_route);
+   // qDebug() << pos << endl;
 }
 
 void LoMoWidget::stopLocate(){
     toolbutton3->setEnabled(true);
     toolbutton4->setEnabled(false);
     m_locateWin->closeSocket();
+    m_thread.quit();
     if(m_locateWin!=nullptr)
     delete m_locateWin;
-
 }
 
+void LoMoWidget::freshMap(){
+   scene1->clear();
+}
 
 

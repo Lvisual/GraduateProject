@@ -8,10 +8,11 @@
 #include<QVBoxLayout>
 #include<QPushButton>
 #include<QDebug>
+#include<QDateTimeEdit>
 HistoryChoice::HistoryChoice(QWidget *parent) :
     QWidget(parent)
 {
-    this->setFixedSize(500,400);
+    this->setFixedSize(700,550);
     setWindowFlags(Qt::FramelessWindowHint);
 
     //表单输入
@@ -21,24 +22,36 @@ HistoryChoice::HistoryChoice(QWidget *parent) :
     m_timeBoxLabel->setText(QStringLiteral("请选择时间段"));
     m_idBoxLabel = new QLabel;
     m_idBoxLabel->setText(QStringLiteral("请选择员工"));
+    m_beginLabel  = new QLabel;
+    m_beginLabel->setText(QStringLiteral("请选择起始时间"));
+    m_beginTime = new QDateTimeEdit(QDateTime::currentDateTime());
+    m_beginTime->setCalendarPopup(true);
+    m_endLabel  = new QLabel;
+    m_endLabel->setText(QStringLiteral("请选择结束时间"));
+    m_endTime = new QDateTimeEdit(QDateTime::currentDateTime());
+    m_endTime->setCalendarPopup(true);
     QHBoxLayout *hlayout1 = new QHBoxLayout;
     QHBoxLayout *hlayout2 = new QHBoxLayout;
-    hlayout1->addWidget(m_timeBoxLabel);
-    hlayout1->addWidget(m_timeBox);
-    hlayout2->addWidget(m_idBoxLabel);
-    hlayout2->addWidget(m_idBox);
-
+    QHBoxLayout *hlayout3 = new QHBoxLayout;
+    hlayout1->addWidget(m_idBoxLabel);
+    hlayout1->addWidget(m_idBox);
+    hlayout2->addWidget(m_beginLabel);
+    hlayout2->addWidget(m_beginTime);
+    hlayout3->addWidget(m_endLabel);
+    hlayout3->addWidget(m_endTime);
     hlayout1->setSpacing(12);
     hlayout1->setContentsMargins(10,40,0,40);
     hlayout1->setAlignment(Qt::AlignLeft);
     hlayout2->setSpacing(12);
     hlayout2->setContentsMargins(10,40,0,40);
     hlayout2->setAlignment(Qt::AlignLeft);
-
+    hlayout3->setSpacing(12);
+    hlayout3->setContentsMargins(10,40,0,40);
+    hlayout3->setAlignment(Qt::AlignLeft);
     QVBoxLayout *vlayout = new QVBoxLayout;
     vlayout->addLayout(hlayout1);
     vlayout->addLayout(hlayout2);
-
+    vlayout->addLayout(hlayout3);
     widget_1=new QWidget();
     widget_1->setLayout(vlayout);
     widget_1->setObjectName("widget_1");
@@ -108,10 +121,11 @@ HistoryChoice::HistoryChoice(QWidget *parent) :
 
 void HistoryChoice::combine(){
     HistoryInfo info;
-    info.id = this->m_idBox->currentIndex();
-    info.time = m_reflect[this->m_timeBox->currentText()];
+    info.lableName = this->m_idBox->currentText();
+    info.startTime = this->m_beginTime->dateTime();
+    info.endTime = this->m_endTime->dateTime();
     emit historyInfo(info);
-    //this->close();
+    this->close();
 }
 
 
@@ -209,8 +223,10 @@ void HistoryChoice::setBox(){
     m_idBox = new QComboBox;
     m_idBox->setObjectName("m_idBox");
     m_idBox->setView(new QListView());
-    m_idBox->addItem(QStringLiteral("A员工"));
-    m_idBox->addItem(QStringLiteral("B员工"));
+    labelDao ldao;
+    QVector<QString> labelVec = ldao.getAllLabelName();
+    for(auto s:labelVec)
+        m_idBox->addItem(s);
     m_idBox->setStyleSheet("background:white;"
                          "border:1px solid rgb(111,156,207);"
                          "border-radius:4px;"
@@ -227,7 +243,6 @@ void HistoryChoice::setBox(){
     m_timeBox->addItem(QString::fromLocal8Bit("15:00-16:00"));
     m_timeBox->addItem(QString::fromLocal8Bit("16:00-17:00"));
     m_timeBox->addItem(QString::fromLocal8Bit("17:00-18:00"));
-
     m_timeBox->setStyleSheet("background:white;"
                          "border:1px solid rgb(111,156,207);"
                          "border-radius:4px;"

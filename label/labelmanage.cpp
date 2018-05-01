@@ -37,7 +37,7 @@ m_tableView= new QTableView();
 m_tableView->setModel(m_model);
 m_tableView->setSizePolicy(QSizePolicy::Expanding , QSizePolicy::Expanding);
 m_delegateBtn = new ButtonDelegate;
-m_tableView->setItemDelegateForColumn(7,m_delegateBtn);
+m_tableView->setItemDelegateForColumn(8,m_delegateBtn);
 
 
 
@@ -87,7 +87,7 @@ labelmanage::~labelmanage()
     delete ui;
 }
 void labelmanage::setupModel(){
-  m_model = new LabelModel(8,0);
+  m_model = new LabelModel(9,0);
   freshLabel();
 }
 

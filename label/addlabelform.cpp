@@ -13,21 +13,23 @@ addLabelForm::addLabelForm(QWidget *parent) :
     formlayout=new QFormLayout();
     formlayout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
     labelIdEdit=new QLineEdit();
+    labelNameEdit = new QLineEdit();
     employeeIdEdit = new QLineEdit();
     chargeEdit = new QLineEdit();
     stateEdit = new QLineEdit();
     remarkEdit = new QLineEdit();
 
     labelIdEdit->setPlaceholderText(QString::fromLocal8Bit("请输入标签ID"));
-    employeeIdEdit->setPlaceholderText(QString::fromLocal8Bit("请输入员工ID"));
+    labelNameEdit->setPlaceholderText(QString::fromLocal8Bit("请输入标签名称"));
+    employeeIdEdit->setPlaceholderText(QString::fromLocal8Bit("请输入人员ID"));
     chargeEdit->setPlaceholderText(QString::fromLocal8Bit("请输入标签电量"));
-    stateEdit->setPlaceholderText(QString::fromLocal8Bit("请输入生命状态"));
+    stateEdit->setPlaceholderText(QString::fromLocal8Bit("请输入运行状态"));
     remarkEdit->setPlaceholderText(QString::fromLocal8Bit("备注"));
 
-   // formlayout->addRow(QString::fromLocal8Bit("&标签ID: "),labelIdEdit);
-    formlayout->addRow(QString::fromLocal8Bit("&员工ID: "),employeeIdEdit);
+    formlayout->addRow(QString::fromLocal8Bit("&标签名称: "),labelNameEdit);
+    formlayout->addRow(QString::fromLocal8Bit("&标签佩戴人员ID: "),employeeIdEdit);
     formlayout->addRow(QString::fromLocal8Bit("&电量: "),chargeEdit);
-    formlayout->addRow(QString::fromLocal8Bit("&生命状态: "),stateEdit);
+    formlayout->addRow(QString::fromLocal8Bit("&运行状态: "),stateEdit);
     formlayout->addRow(QString::fromLocal8Bit("&备注: "),remarkEdit);
     formlayout->setLabelAlignment(Qt::AlignRight);
     formlayout->setVerticalSpacing(40);
@@ -103,6 +105,7 @@ addLabelForm::addLabelForm(QWidget *parent) :
 void addLabelForm::combine(){
     Label info;
     info.setLableId(this->labelIdEdit->text().toInt());
+    info.setLabelName(this->labelNameEdit->text());
     info.setEmployeeId(this->employeeIdEdit->text().toInt());
     info.setCharge(this->chargeEdit->text());
     info.setState(this->stateEdit->text());

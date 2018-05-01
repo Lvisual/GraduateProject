@@ -15,11 +15,14 @@
 #include <QLabel>
 #include <QComboBox>
 #include "basestation/formtitle.h"
+#include "label/labeldao.h"
+#include <QDateTimeEdit>
 #define MARGIN 8
 
 struct HistoryInfo{
-    QString time;
-    int id;
+    QString lableName;
+    QDateTime startTime;
+    QDateTime endTime;
 };
 
 class HistoryChoice : public QWidget
@@ -49,6 +52,12 @@ private:
     QComboBox *m_idBox;
     QLabel *m_idBoxLabel;
 
+    QLabel *m_beginLabel;
+    QDateTimeEdit *m_beginTime;
+    QLabel *m_endLabel;
+    QDateTimeEdit *m_endTime;
+
+
     QPushButton *chk_btn;
     QPushButton *can_btn;
     QGridLayout *gridlayout;
@@ -63,7 +72,6 @@ private:
     QPoint pLast;
 
     QMap<QString,QString> m_reflect;
-
 };
 
 #endif // HISTORYCHOICE_H

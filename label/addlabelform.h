@@ -23,10 +23,12 @@ public:
     QFormLayout *formlayout;
 
     QLineEdit *labelIdEdit;
+    QLineEdit *labelNameEdit;
     QLineEdit *employeeIdEdit;
     QLineEdit *chargeEdit;
     QLineEdit *stateEdit;
     QLineEdit *remarkEdit;
+
 
     QPushButton *chk_btn;
     QPushButton *can_btn;

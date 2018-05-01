@@ -51,6 +51,12 @@ void Label::setRemark(const QString &remark)
 m_remark = remark;
 }
 
+QString Label::labelName()const{
+    return m_labelName;
+}
+void Label::setLabelName(const QString &labelName){
+    m_labelName = labelName;
+}
 
 
 LabelModel::LabelModel(const int totalColumn, const int aColumnNumWithChechBox, QObject *parent)
@@ -91,12 +97,14 @@ QVariant LabelModel::data( const QModelIndex &index, int role ) const
         if (index.column() == 2)
             return m_labelVec[index.row()].lableId();
         if (index.column() == 3)
-            return m_labelVec[index.row()].employeeId();
+            return m_labelVec[index.row()].labelName();
         if (index.column() == 4)
-            return m_labelVec[index.row()].charge();
+            return m_labelVec[index.row()].employeeId();
         if (index.column() == 5)
+            return m_labelVec[index.row()].charge();
+        if (index.column() == 6)
             return m_labelVec[index.row()].state();
-        if(index.column() == 6)
+        if(index.column() == 7)
             return m_labelVec[index.row()].remark();
     }
 
@@ -122,15 +130,17 @@ QVariant LabelModel::headerData( int section, Qt::Orientation orientation, int r
             return QString::fromLocal8Bit("序号");
         if (section == 2)
             return QString::fromLocal8Bit("标签ID");
-        if (section == 3)
-            return QString::fromLocal8Bit("员工ID");
+        if(section == 3)
+            return QString::fromLocal8Bit("标签名称");
         if (section == 4)
-            return QString::fromLocal8Bit("电量");
+            return QString::fromLocal8Bit("标签佩戴人员ID");
         if (section == 5)
-            return QString::fromLocal8Bit("生命状态");
+            return QString::fromLocal8Bit("电量");
         if (section == 6)
+            return QString::fromLocal8Bit("运行状态");
+        if (section == 7)
             return QString::fromLocal8Bit("备注");
-        if(section == 7)
+        if(section == 8)
             return QString::fromLocal8Bit("详情");
 
     }

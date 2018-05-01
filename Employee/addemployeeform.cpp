@@ -19,20 +19,20 @@ addEmployeeForm::addEmployeeForm(QWidget *parent) :
     phoneEdit = new QLineEdit();
     addressEdit = new QLineEdit();
     remarkEdit = new QLineEdit();
-    //idEdit->setPlaceholderText(QStringLiteral("请输入员工ID"));
-    nameEdit->setPlaceholderText(QStringLiteral("请输入员工姓名"));
-    ageEdit->setPlaceholderText(QStringLiteral("请输入员工年龄"));
-    sexEdit->setPlaceholderText(QStringLiteral("请输入员工性别"));
-    phoneEdit->setPlaceholderText(QStringLiteral("请输入员工电话"));
-    addressEdit->setPlaceholderText(QStringLiteral("请输入员工地址"));
+    //idEdit->setPlaceholderText(QStringLiteral("请输入人员ID"));
+    nameEdit->setPlaceholderText(QStringLiteral("请输入人员姓名"));
+    ageEdit->setPlaceholderText(QStringLiteral("请输入人员年龄"));
+    sexEdit->setPlaceholderText(QStringLiteral("请输入人员性别"));
+    phoneEdit->setPlaceholderText(QStringLiteral("请输入人员电话"));
+    addressEdit->setPlaceholderText(QStringLiteral("请输入人员地址"));
     remarkEdit->setPlaceholderText(QStringLiteral("备注"));
 
-   // formlayout->addRow(QStringLiteral("&员工ID："),idEdit);
-    formlayout->addRow(QStringLiteral("&员工姓名: "),nameEdit);
-    formlayout->addRow(QStringLiteral("&员工年龄: "),ageEdit);
-    formlayout->addRow(QStringLiteral("&员工性别: "),sexEdit);
-    formlayout->addRow(QStringLiteral("&员工电话: "),phoneEdit);
-    formlayout->addRow(QStringLiteral("&员工地址: "),addressEdit);
+   // formlayout->addRow(QStringLiteral("&人员ID："),idEdit);
+    formlayout->addRow(QStringLiteral("&人员姓名: "),nameEdit);
+    formlayout->addRow(QStringLiteral("&人员年龄: "),ageEdit);
+    formlayout->addRow(QStringLiteral("&人员性别: "),sexEdit);
+    formlayout->addRow(QStringLiteral("&人员电话: "),phoneEdit);
+    formlayout->addRow(QStringLiteral("&人员地址: "),addressEdit);
     formlayout->addRow(QStringLiteral("&备注："),remarkEdit);
     formlayout->setLabelAlignment(Qt::AlignRight);
     formlayout->setVerticalSpacing(40);
@@ -73,7 +73,7 @@ addEmployeeForm::addEmployeeForm(QWidget *parent) :
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scrollArea->setFrameShape(QFrame::NoFrame);
 
-    title=new FormTitle(this,QStringLiteral("员工类型"));
+    title=new FormTitle(this,QStringLiteral("标签佩戴人员信息"));
     title->setFixedHeight(40);
 
     gridlayout=new QGridLayout(this);
@@ -107,7 +107,7 @@ addEmployeeForm::addEmployeeForm(QWidget *parent) :
 
 void addEmployeeForm::combine(){
     Employee info;
-    info.setId(this->idEdit->text().toInt());
+    //info.setId(this->idEdit->text().toInt());
     info.setName(this->nameEdit->text());
     info.setAge(this->ageEdit->text().toInt());
     info.setSex(this->sexEdit->text());

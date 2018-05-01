@@ -11,9 +11,9 @@ selectForm::selectForm(QWidget *parent) : QWidget(parent)
     formlayout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
     idEdit=new QLineEdit();
 
-    idEdit->setPlaceholderText(QStringLiteral("请输入员工ID"));
+    idEdit->setPlaceholderText(QStringLiteral("请输入人员ID"));
 
-    formlayout->addRow(QStringLiteral("&员工ID："),idEdit);
+    formlayout->addRow(QStringLiteral("&人员ID："),idEdit);
     formlayout->setLabelAlignment(Qt::AlignRight);
     formlayout->setVerticalSpacing(40);
     formlayout->setHorizontalSpacing(10);
@@ -53,7 +53,7 @@ selectForm::selectForm(QWidget *parent) : QWidget(parent)
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scrollArea->setFrameShape(QFrame::NoFrame);
 
-    title=new FormTitle(this,QStringLiteral("员工查询"));
+    title=new FormTitle(this,QStringLiteral("人员查询"));
     title->setFixedHeight(40);
 
     gridlayout=new QGridLayout(this);

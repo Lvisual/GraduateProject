@@ -21,9 +21,13 @@ public:
     QString remark() const;
     void setRemark(const QString &remark);
 
+    QString labelName() const;
+    void setLabelName(const QString &labelName);
+
 private:
     int m_employeeId;
     int m_lableId;
+    QString m_labelName;
     QString m_charge;
     QString m_state;
     QString m_remark;

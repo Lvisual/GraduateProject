@@ -140,19 +140,19 @@ QVariant employeeModel::headerData( int section, Qt::Orientation orientation, in
         if (section == 0)
             return QStringLiteral("序号");
         if (section == 1)
-            return QStringLiteral("员工ID");
+            return QStringLiteral("人员ID");
         if (section == 2)
-            return QStringLiteral("员工姓名");
+            return QStringLiteral("人员姓名");
         if (section == 3)
-            return QStringLiteral("员工年龄");
+            return QStringLiteral("人员年龄");
         if (section == 4)
-            return QStringLiteral("员工性别");
+            return QStringLiteral("人员性别");
         if (section == 5)
-            return QStringLiteral("员工联系方式");
+            return QStringLiteral("人员联系方式");
         if (section == 6)
-            return QStringLiteral("员工住址");
+            return QStringLiteral("人员住址");
         if (section == 7)
-            return QStringLiteral("员工备注");
+            return QStringLiteral("人员备注");
         if (section == 8)
             return QStringLiteral("多选");
     }

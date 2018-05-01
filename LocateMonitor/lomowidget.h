@@ -37,8 +37,12 @@
 #include "DaoHang/dhpushbutton.h"
 #include "locatedatawin.h"
 #include "Maps/moveitem.h"
+#include "xmlthread.h"
 #include <QGraphicsItemAnimation>
 #include <QTimeLine>
+#include <QQueue>
+#include "historyroute.h"
+#include "Maps/myfile.h"
 namespace Ui {
 class LoMoWidget;
 }
@@ -65,6 +69,7 @@ public slots:
     void showHistoryWin();
     void showHistoryRoute(HistoryInfo);
     void loadScene1(bool);
+    void freshMap();
 signals:
    // void stateChange();
 private:
@@ -72,15 +77,11 @@ private:
     ElecFencingView *view;
 
     QToolButton *toolbutton1;
-    //QToolButton *toolbutton2;
+    QToolButton *toolbutton2;
     QToolButton *toolbutton3;
     QToolButton *toolbutton4;
 
-    QVector<QPoint> m_access1;
-    QVector<QPoint> m_access2;
-    MyXml m_xml1;
-    MyXml m_xml2;
-
+    QVector<QPoint> m_access;
     QPushButton *pushbutton1;
 
     NaviView * m_naviView;
@@ -130,6 +131,7 @@ private:
     QTimeLine *m_timer;
     QVector<QPoint> m_pathVec;
     Route *m_route;
+    XmlThread m_thread;
 private slots:
     void supersetvisble();
     void locatedata(QString,QPointF);

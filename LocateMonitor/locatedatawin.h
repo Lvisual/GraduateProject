@@ -7,6 +7,7 @@
 #include <QHostAddress>
 #include <QTextEdit>
 #include <QFile>
+#include "xmlthread.h"
 class LocateDataWin : public QWidget
 {
     Q_OBJECT

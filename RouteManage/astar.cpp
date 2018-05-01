@@ -51,7 +51,7 @@ CPoint *Astar::findPath(CPoint &startPoint,CPoint &endPoint)
 {
      openList.push_back(new CPoint(startPoint.x,startPoint.y)); //置入起点,拷贝开辟一个节点，内外隔离
      std::vector<CTriangle*>commonTriangleVector1=cbowyer.GetcommonTriangles();
-     qDebug() <<"lk" << commonTriangleVector1.size() << endl;
+     //qDebug() <<"lk" << commonTriangleVector1.size() << endl;
      int k = this->findPolygon(endPoint);
      CPoint *endTriCenter=commonTriangleVector1[k]->getCenter();
      CPoint *resPoint=NULL;
@@ -64,25 +64,25 @@ CPoint *Astar::findPath(CPoint &startPoint,CPoint &endPoint)
             //1,找到当前周围八个格中可以通过的格子
             std::vector<CPoint*> surroundPoints=getSurroundPoints(*curPoint);
             std::vector<CPoint*>::iterator iter = surroundPoints.begin();
-            qDebug() << "size" << surroundPoints.size();
+           // qDebug() << "size" << surroundPoints.size();
             for(;iter!=surroundPoints.end();iter++)
             {
                 //2,对于某个点的相邻三角形的中心点，如果它不在开启列表中，加入到开启列表，设置当前格为其父节点，计算F G H
                 CPoint*target = *iter;
                 if(isInList(closeList,target)){
-                    qDebug() <<"dashi";
+                    //qDebug() <<"dashi";
                 continue;
                 }
                 else if(!isInList(openList,target))
                 {
-                    qDebug()<< "sanjiao";
+                  //  qDebug()<< "sanjiao";
                     target->parent=curPoint;
                     target->G=calcG(curPoint,target);
                     target->H=calcH(target,&endPoint);
                     target->F=calcF(target);
                     openList.push_back(target);
                     count++;
-                    qDebug() << count << endl;
+                    //qDebug() << count << endl;
                 }
                 //3，对于某个点的相邻三角形的中心点，如果它在开启列表中，计算G值, 如果比原来的大, 就什么都不做, 否则设置它的父节点为当前点,并更新G和F
                 else
@@ -103,7 +103,7 @@ CPoint *Astar::findPath(CPoint &startPoint,CPoint &endPoint)
                   break;
             }
         }
-    qDebug() << "the max size of openlist: " <<count;
+   // qDebug() << "the max size of openlist: " <<count;
     return  resPoint;
 }
 
@@ -157,7 +157,7 @@ std::vector<CPoint*> Astar::getSurroundPoints(CPoint point)
     int i= this->findPolygon(point);
     std::list<CTriangle*> m_lstBowyerWatsonTriangleList= cbowyer.GetBowyerWatsonTriangles();
     std::list<CTriangle*>::iterator iter2 = m_lstBowyerWatsonTriangleList.begin();
-    qDebug() <<"all the triangle:" << m_lstBowyerWatsonTriangleList.size();
+  //  qDebug() <<"all the triangle:" << m_lstBowyerWatsonTriangleList.size();
 //    std::list<CTriangle*>::iterator m_iter = m_lstBowyerWatsonTriangleList.begin();
 //    for(;m_iter!=m_lstBowyerWatsonTriangleList.end();m_iter++){
 //        qDebug()<<(*m_iter)->p1.x<<" "<<(*m_iter)->p1.y<<" ";

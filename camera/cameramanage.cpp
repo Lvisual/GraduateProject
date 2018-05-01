@@ -11,7 +11,6 @@ CameraManage::CameraManage(QWidget *parent) :
     ui(new Ui::CameraManage)
 {
     ui->setupUi(this);
-    qDebug() << "camerastart";
     QPalette palette;
     palette.setBrush(QPalette::Window, QBrush(Qt::white));
     setPalette(palette);
@@ -79,8 +78,6 @@ CameraManage::CameraManage(QWidget *parent) :
     ver1->addWidget(widget1,1);
     ver1->addWidget(tableview1,8);
     ver1->addWidget(widget2,1);
-
-    qDebug() << "cameraend";
 
 }
 

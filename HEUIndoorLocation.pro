@@ -134,7 +134,9 @@ SOURCES += main.cpp\
     basestation/selectbaseform.cpp \
     LocateMonitor/locatedatawin.cpp \
     Maps/mymapview.cpp \
-    LocateMonitor/testview.cpp
+    LocateMonitor/testview.cpp \
+    LocateMonitor/xmlthread.cpp \
+    LocateMonitor/historyroute.cpp
 
 HEADERS  += mainwindow.h \
     titlewidget.h \
@@ -245,7 +247,9 @@ HEADERS  += mainwindow.h \
     basestation/selectbaseform.h \
     LocateMonitor/locatedatawin.h \
     Maps/mymapview.h \
-    LocateMonitor/testview.h
+    LocateMonitor/testview.h \
+    LocateMonitor/xmlthread.h \
+    LocateMonitor/historyroute.h
 
 FORMS    += mainwindow.ui \
     titlewidget.ui \

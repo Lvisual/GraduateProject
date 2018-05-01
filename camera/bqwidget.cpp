@@ -27,9 +27,7 @@ BqWidget::BqWidget(QWidget *parent) :
     ver1->setSpacing(0);
     setLayout(ver1);
 
-    qDebug() << "liukai";
     camera_linkage=new CameraLinkage;
-    qDebug() <<"liukai2";
     camera_manage=new CameraManage;
 
     camera_linkage->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);

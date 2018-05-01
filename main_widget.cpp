@@ -345,9 +345,9 @@ void main_widget::showBqwidget()
     lomomainwidget->hide();
     content_widget->hide();
     jzwidget->hide();
-     qDebug() << "lk";
+    // qDebug() << "lk";
     bqwidget->show();
-     qDebug() << "Lvisal";
+    // qDebug() << "Lvisal";
     kqwidget->hide();
     truebqwidget->hide();
     mapwidget->hide();
